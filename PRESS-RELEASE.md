@@ -1,4 +1,4 @@
-# Project Name #
+# Honest #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -16,38 +16,27 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-    **** HONEST *****
+## HONEST ##
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-    *Anyone interested in building a better, more honest society.
+ - Anyone interested in building a better, more honest society.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-    *Losing valuable objects suck! Be it your purse, wallet, dog, or perhaps even a loved one. Honest gives you and your community the opportunity to be a good Samaritan. Post a picture and info on the lost item/person. Your people in your community and beyond have the chance to find it and return it.
+  > Losing valuable objects suck! Be it your purse, wallet, dog, or perhaps even a loved one. Honest gives you and your community the opportunity to be a good Samaritan. Post a picture and info on the lost item/person. Your people in your community and beyond have the chance to find it and return it.
 
 ## Problem ##
-  > Describe the problem your product solves.
-    *posting on craigslist is a gamble. The person you're meeting could be dangerous. This helps keep you a little safer when trying to recover items you lost.
+  > posting on craigslist is a gamble. The person you're meeting could be dangerous. This helps keep you a little safer when trying to recover items you lost.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
-    *We seperate lost items into categories. A user posts a descriptive list of the qualities of the lost item and a picture of the item. If someone finds the item they post it to the found section and all users of that category with matching characteristics are notified. If they believe it is theirs they message the finder and set up a meeting in a safe public space. The case is then closed. For pets and people the user post is made public to all on the front page that the user can scroll through.
+  > We seperate lost items into categories. A user posts a descriptive list of the qualities of the lost item and a picture of the item. If someone finds the item they post it to the found section and all users of that category with matching characteristics are notified. If they believe it is theirs they message the finder and set up a meeting in a safe public space. The case is then closed. For pets and people the user post is made public to all on the front page that the user can scroll through.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
-    * Feel like this will help build the moral fiber of society
+  > "Feel like this will help build the moral fiber of society."
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
-    *The user goes to our site. Creates an account. The user now has access to posting lost or found items and search the list of lost people & pets
+  > The user goes to our site. Creates an account. The user now has access to posting lost or found items and search the list of lost people & pets
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-    *I lost my dog "Scout" in our neighborhood. I posted to the app a description of him and a few pictures and within 30min i had several messages about others who had seen him a 10 blocks away. I went searching that area and within an hour I got a message saying someone had located Scout and wanted to meet up for him. We met outside a coffee shop and 
-    i got my best friend back. 
+  > I lost my dog "Scout" in our neighborhood. I posted to the app a description of him and a few pictures and within 30min i had several messages about others who had seen him a 10 blocks away. I went searching that area and within an hour I got a message saying someone had located Scout and wanted to meet up for him. We met outside a coffee shop and i got my best friend back. 
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
