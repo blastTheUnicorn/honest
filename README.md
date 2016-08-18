@@ -1,16 +1,15 @@
 # Honest
 
-> Pithy project description
+> Losing valuable objects suck! Be it your purse, wallet, dog, or perhaps even a loved one. Honest gives you and your community the opportunity to be a good Samaritan. Post a picture and info on the lost item/person. The people in your community and beyond have the chance to find it and return it.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Atlante Avila  
+  - __Scrum Master__: Luisa Zapata
+  - __Development Team Members__: Garland Riley 
 
 ## Table of Contents
 
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
@@ -18,17 +17,13 @@
 1. [Team](#team)
 1. [Contributing](#contributing)
 
-## Usage
-
-> Some usage instructions
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 
+- Express 
+- Mongo
+- Npm 
 
 ## Development
 
@@ -44,7 +39,7 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/blastTheUnicorn/honest/issues)
 
 
 ## Contributing

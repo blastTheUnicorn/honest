@@ -38,5 +38,5 @@ Once the project moves into development, the press release can be used as a touc
   > "I lost my dog "Scout" in our neighborhood. I posted to the app a description of him and a few pictures and within 30min i had several messages about others who had seen him a 10 blocks away. I went searching that area and within an hour I got a message saying someone had located Scout and wanted to meet up for him. We met outside a coffee shop and i got my best friend back." 
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Please join our efforts to build up our communities via honest. Follow us by joining our app at http://honest.herokuapp.com
     
