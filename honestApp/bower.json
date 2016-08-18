@@ -1,0 +1,30 @@
+{
+  "name": "honest",
+  "description": "application to help connect lost items to their owners",
+  "main": "app.js",
+  "authors": [
+    "Garland Riley Jr.",
+    "Luisa Zapata",
+    "Atlante Avila"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/blastTheUnicorn/honest.git",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "angularjs-slider": "^5.4.3",
+    "angular-animate": "^1.5.8",
+    "angular-material": "^1.1.0",
+    "angular-bootstrap": "^2.0.2"
+  },
+  "install": {
+      "path": "libs"
+    }
+}
