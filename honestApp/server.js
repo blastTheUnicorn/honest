@@ -12,10 +12,12 @@ app.set('port', port);
 app.get('/test', function(req, res){
   res.statusCode = 200;
   res.send(new Buffer('Hello World!'));
-})
+});
+
+app.use(express.static(__dirname + '/app'));
 
 var server = app.listen(port, function(){
-  console.log('WE OUT HERE LISTENING BRUH!!! PORT ' + port)
-})
+  console.log('WE OUT HERE LISTENING BRUH!!! PORT ' + port);
+});
 
 module.exports = server;
