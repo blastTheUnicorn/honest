@@ -11,13 +11,27 @@ var server = require('../server');
 chai.use(chaiHttp);
 
 describe('server', function(){
-  it('it should GET \'Hello World!\'', function(done){
+  it('it should have a status code of 200', function(done){
     chai.request(server)
-        .get('/')
+        .get('/test')
         .end(function(err, res){
           res.should.have.status(200);
-          res.should.have.property('body');
+          done();
+        })
+  })
+  it('it should have a res.body property', function(done){
+    chai.request(server)
+        .get('/test')
+        .end(function(err, res){
+          res.should.have.a.property('body');
           done();
         })
   })
 })
+
+
+
+
+
+
+
