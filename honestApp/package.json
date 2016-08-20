@@ -7,6 +7,10 @@
     "test": "mocha ./spec/serverSpec.js",
     "start": "nodemon server.js"
   },
+  "engines": {
+  "node": "6.2.2",
+  "npm": "3.9.5"
+},
   "author": "Garland Riley Jr., Luisa Zapata, and Atlante Avila",
   "license": "ISC",
   "homepage": "https://github.com/blastTheUnicorn/honest.git",
