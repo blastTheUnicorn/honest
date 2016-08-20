@@ -8,8 +8,8 @@ var port = process.env.PORT || 3000;
 app.set('port', port);
 
 app.get('/', function(req, res){
-  res.status = 200;
-  res.send('Hello World!')
+  res.statusCode = 200;
+  res.send('Hello World!');
 })
 
 var server = app.listen(port, function(){

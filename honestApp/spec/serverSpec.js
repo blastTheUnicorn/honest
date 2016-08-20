@@ -15,9 +15,8 @@ describe('server', function(){
     chai.request(server)
         .get('/')
         .end(function(err, res){
-          res.body.should.be.a.string;
-          res.body.have.status(200);
-          res.body.should.be('Hello World!')
+          res.should.have.status(200);
+          res.should.have.property('body');
           done();
         })
   })
