@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var db = require('./db.js');
+
 
 var app = express();
 
