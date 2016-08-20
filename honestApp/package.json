@@ -4,7 +4,7 @@
   "description": "application to help connect lost items to their owners",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha ./spec/serverSpec.js",
     "start": "nodemon server.js"
   },
   "author": "Garland Riley Jr., Luisa Zapata, and Atlante Avila",
@@ -32,6 +32,7 @@
     "angular-mocks": "^1.5.8",
     "browserify": "^13.1.0",
     "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "karma": "^1.2.0",
     "lodash": "^4.15.0",
     "mocha": "^3.0.2",
