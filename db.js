@@ -1,14 +1,5 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/honest');
-// mongoose.connect('mongodb://ksiddana:itsmeagain@ds049925.mongolab.com:49925/hyrax');
-//this needs to be changed before deployment 
-var db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'connection error:'));
-
-db.once('open', function(){
-  console.log("db connected!");
 
   var ObjectSchema = new mongoose.Schema({
     lost : Boolean,
@@ -37,7 +28,7 @@ db.once('open', function(){
     found : [ObjectSchema]
   });
 
-  var User = mongoose.model('User',UserSchema);
+mongoose.model('User',UserSchema)
 
   var testUser = {
     username : 'lulu',
@@ -47,4 +38,3 @@ db.once('open', function(){
   }
   // User.create([testUser]);
 
-})

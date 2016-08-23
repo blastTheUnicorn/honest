@@ -1,10 +1,12 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var db = require('./db.js');
 
 
-var app = express();
+console.log(module.exports)
 var User = mongoose.model('User');
+var app = express();
 
 
 var port = process.env.PORT || 3000;
@@ -16,6 +18,18 @@ app.get('/test', function(req, res){
 });
 
 app.use(express.static(__dirname + '/app'));
+
+mongoose.connect('mongodb://localhost/honest');
+// mongoose.connect('mongodb://ksiddana:itsmeagain@ds049925.mongolab.com:49925/hyrax');
+//this needs to be changed before deployment 
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function(){
+  console.log("db connected!");
+
+})
 
 app.post('/signup', function(req, res, next){
   if(!req.body.username || !req.body.password || !req.body.name || !req.body.email){
