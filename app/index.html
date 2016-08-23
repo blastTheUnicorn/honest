@@ -1,16 +1,57 @@
 <!DOCTYPE html>
-<html ng-app="honestApp">
+<html>
 <head>
   <title>Honest</title>
+  <script src="https://use.typekit.net/ylp1hch.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
 </head>
-<body>
-  
-  <h1>Honest</h1>
-  
-  <div ui-view></div>
+<!-- StyleSheets -->
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="lib/angular-material/angular-material.min.css">
 
-  <script src="lib/angular/angular.min.js"></script>
-  <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+<!-- JavaScript -->
+<script src="lib/angular/angular.min.js"></script>
+
+<script src="lib/angular-animate/angular-animate.min.js"></script>
+<script src="lib/angular-aria/angular-aria.min.js"></script>
+<script src="lib/angular-messages/angular-messages.min.js"></script>
+
+<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="lib/angular-material/angular-material.js"></script>
+
+<body ng-app="honestApp">
+  
+  <md-toolbar class="header">
+    <h1>honest</h1>
+  </md-toolbar>
+  
+  <div>
+
+    <md-sidenav md-component-id="left" md-is-locked-open="true">
+
+<!--       <md-list-item>
+        <md-button>
+          <md-icon md-svg-src="..." class=""></md-icon>
+          Atlante Avila
+        </md-button>
+      </md-list-item>
+      <md-list-item>
+        <md-button>
+          <md-icon md-svg-src="..." class=""></md-icon>
+          Atlante Avila
+        </md-button>
+      </md-list-item>
+-->
+
+    </md-sidenav>
+
+    <md-content id="content">
+      <div ui-view></div>
+    </md-content>
+  
+  </div>
+
   <script src="js/angularApp.js"></script>
+
 </body>
 </html>
