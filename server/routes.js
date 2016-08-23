@@ -1,38 +1,13 @@
 var express = require('express');
+var router = express.Router();
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose')
-var db = require('./db.js');
-
-
-console.log(module.exports)
+var passport = require('passport');
+var jwt = require('express-jwt');
 var User = mongoose.model('User');
-var app = express();
 
 
-var port = process.env.PORT || 3000;
-app.set('port', port);
 
-app.get('/test', function(req, res){
-  res.statusCode = 200;
-  res.send(new Buffer('Hello World!'));
-});
-
-app.use(express.static(__dirname + '/app'));
-
-mongoose.connect('mongodb://localhost/honest');
-// mongoose.connect('mongodb://ksiddana:itsmeagain@ds049925.mongolab.com:49925/hyrax');
-//this needs to be changed before deployment 
-var db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'connection error:'));
-
-db.once('open', function(){
-  console.log("db connected!");
-
-})
-
-app.post('/signup', function(req, res, next){
+router.post('/signup', function(req, res, next){
   if(!req.body.username || !req.body.password || !req.body.name || !req.body.email){
     return res.status(400).json({message: 'Please fill out all fields'});
  };
@@ -47,7 +22,7 @@ app.post('/signup', function(req, res, next){
  })
 });
 
-app.post('/login', function(req, res ,next){
+router.post('/login', function(req, res ,next){
   if(!req.body.username || !req.body.password){
     return res.status(400).json({message: 'Please fill out all fields'});
   }
@@ -65,8 +40,4 @@ app.post('/login', function(req, res ,next){
   })(req, res, next);
 })
 
-var server = app.listen(port, function(){
-  console.log('WE OUT HERE LISTENING BRUH!!! PORT ' + port);
-});
-
-module.exports = server;
+module.exports = router;
