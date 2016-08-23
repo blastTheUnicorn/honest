@@ -4,7 +4,7 @@
   "description": "application to help connect lost items to their owners",
   "main": "app.js",
   "scripts": {
-    "test": "mocha ./spec/serverSpec.js",
+    "test": "mocha ./spec/serverSpec.js -R nyan",
     "start": "nodemon server.js"
   },
   "engines": {
