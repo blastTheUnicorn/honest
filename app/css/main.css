@@ -1,0 +1,31 @@
+body{
+  background: url('../images/bg.jpg') no-repeat top left;
+}
+
+/* MD Content Overwrites */
+md-content.md-default-theme, md-content{
+  background: transparent;
+}
+.header{
+  background: transparent!important;
+
+}
+.header h1{
+  color: white;
+  text-align: center;
+  font-size: 177px;
+}
+
+.header h1 {
+  font-family: "Futura";
+  line-height: 1.2;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.66);
+}
+
+/*login form*/
+#login{
+  padding: 30px;
+}
+#login label{
+  color: white;
+}
