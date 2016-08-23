@@ -1,11 +1,19 @@
 body{
   background: url('../images/bg.jpg') no-repeat top left;
 }
+.centered{
+  text-align: center;
+}
+#wrap{
+  max-width: 90%;
+  margin: auto;
+}
 
 /* MD Content Overwrites */
 md-content.md-default-theme, md-content{
   background: transparent;
 }
+
 .header{
   background: transparent!important;
 
@@ -23,9 +31,12 @@ md-content.md-default-theme, md-content{
 }
 
 /*login form*/
+.inner-form{
+  padding-top: 33px;
+}
 #login{
-  padding: 30px;
+
 }
 #login label{
-  color: white;
+  color: white; 
 }
