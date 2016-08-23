@@ -1,3 +1,7 @@
+<md-toolbar class="header">
+  <h1>honest</h1>
+</md-toolbar>
+
 <div id="wrap">
   <div layout="column" class="loginForm">
 
@@ -5,22 +9,22 @@
 
       <md-content class="md-no-momentum inner-form ">
 
-        <md-input-container class="md-icon-float md-block">
+        <md-input-container class="md-icon-float md-block bigText" flex>
           <!-- Use floating label instead of placeholder -->
           <label>Username</label>
-          <md-icon md-svg-src="images/icons/ic_account_circle_black_24px.svg" class="name"></md-icon>
+          <md-icon md-svg-src="images/icons/ic_account_circle_black_24px.svg" class="loginIcons"></md-icon>
           <input ng-model="user.username" type="text">
         </md-input-container>
 
-        <md-input-container class="md-icon-float md-block">
+        <md-input-container class="md-icon-float md-block bigText">
           <!-- Use floating label instead of placeholder -->
           <label>Password</label>
-          <md-icon md-svg-src="images/icons/ic_lock_black_24px.svg" class="name"></md-icon>
+          <md-icon md-svg-src="images/icons/ic_lock_black_24px.svg" class="loginIcons"></md-icon>
           <input ng-model="user.password" type="password">
         </md-input-container>
 
         <div class="centered">
-          <md-button>Submit</md-button>
+          <md-button ng-click="$scope.goHome()" class="bigText">Submit</md-button>
         </div>
       
       </md-content>

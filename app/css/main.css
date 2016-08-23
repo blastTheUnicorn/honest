@@ -1,5 +1,6 @@
 body{
   background: url('../images/bg.jpg') no-repeat top left;
+  background-size: 100% 100%;
 }
 .centered{
   text-align: center;
@@ -34,9 +35,18 @@ md-content.md-default-theme, md-content{
 .inner-form{
   padding-top: 33px;
 }
+.loginIcons{
+  width: 22px;
+}
 #login{
 
 }
 #login label{
   color: white; 
+}
+#login .bigText{
+  font-size: 33px;
+  padding: 33px;
+  background: transparent;
+  color: white;
 }
