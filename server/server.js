@@ -6,12 +6,12 @@ var db = require('./db.js');
 
 
 var app = express();
-// var routes = require('./routes');
-// app.use('/routes', routes);
+var routes = require('./routes');
+app.use('/routes', routes);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(__dirname + '/app'));
+app.use(express.static(__dirname + '/../app'));
 
 
 
