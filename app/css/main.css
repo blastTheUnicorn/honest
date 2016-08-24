@@ -15,6 +15,8 @@ background: linear-gradient(to left, #E55D87 , #5FC3E4); /* W3C, IE 10+/ Edge, F
   padding: 20px 0;
   color: white;
   font-size: 30px;
+  max-width: 100%;
+  overflow: hidden;
 }
 .or span{
   display: inline-block;
@@ -68,13 +70,18 @@ md-content.md-default-theme, md-content{
 
 }
 #login label{
-  color: white; 
+  color: white;
+  position: absolute;
+  left: 31px;
 }
 #login .bigText{
   font-size: 33px;
   padding: 33px;
   background: transparent;
   color: white;
+}
+#login md-input-container .md-input{
+  height: 50px;
 }
 .socialLogins{
   padding: 32px 250px!important;
