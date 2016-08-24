@@ -5,7 +5,7 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var db = require('./db.js');
 var app = express();
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 
