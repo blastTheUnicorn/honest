@@ -21,6 +21,7 @@
     "bower-installer": "^1.2.0",
     "cookie-parser": "^1.4.3",
     "debug": "^2.2.0",
+    "dotenv": "^2.0.0",
     "ejs": "^2.5.1",
     "express": "^4.14.0",
     "express-jwt": "^3.4.0",

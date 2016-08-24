@@ -1,8 +1,12 @@
 var express = require('express');
-var mongoose = require('mongoose');
+var dotenv = require('dotenv').config();
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose')
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
 var db = require('./db.js');
+var app = express();
+var mongoose = require('mongoose')
+var User = mongoose.model('User');
 
 
 var app = express();
