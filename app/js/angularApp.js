@@ -1,4 +1,8 @@
-angular.module("honestApp", ['ngMaterial', 'ui.router', 'LoginController'])
+angular.module("honestApp", [
+  'ngMaterial', 
+  'ui.router', 
+  'LoginController',
+  'SingUpController'])
 
 .config( function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/login')
@@ -11,6 +15,11 @@ angular.module("honestApp", ['ngMaterial', 'ui.router', 'LoginController'])
       url: '/login',
       templateUrl: '/templates/login/login.html',
       controller: 'LoginCtrl'
+    })
+    .state('signup', {
+      url: '/signup',
+      templateUrl: '/templates/signup/signup.html',
+      controller: 'SignUpCtrl'
     });
 })
 .controller('homeCtrl', ['$scope', function($scope){

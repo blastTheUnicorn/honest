@@ -11,6 +11,20 @@
 
         <md-input-container class="md-icon-float md-block bigText" flex>
           <!-- Use floating label instead of placeholder -->
+          <label>Name</label>
+
+          <input ng-model="user.name" type="text">
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block bigText" flex>
+          <!-- Use floating label instead of placeholder -->
+          <label>email</label>
+
+          <input ng-model="user.email" type="text">
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block bigText" flex>
+          <!-- Use floating label instead of placeholder -->
           <label>Username</label>
 
           <input ng-model="user.username" type="text">
@@ -31,24 +45,5 @@
 
     </form>
 
-  <div class="centered or">
-    <span> Or </span>
   </div>
-  
-  <div class="funLogin">
-    <div class="centered">
-      <md-button ng-click="goHome()" class="md-raised md-primary socialLogins">FaceBook</md-button>
-    </div>
-
-    <div class="centered">
-      <md-button ng-click="goHome()" class="md-raised md-primary twitterBtn">Twitter</md-button>
-    </div>
-
-    <div class="centered">
-      <md-button ng-click="goHome()" class="md-raised md-primary googleBtn">Google</md-button>
-    </div>
-  </div>
-  
-  </div>
-
 </div>
