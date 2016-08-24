@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt-nodejs');
+var jwt = require('jsonwebtoken');
 
 
   var ObjectSchema = new mongoose.Schema({
@@ -10,31 +12,62 @@ var mongoose = require('mongoose');
   })
 
   var UserSchema = new mongoose.Schema({
-    username : {
-      type : String,
-      require : true,
-      uniq : true
+    local : {
+      username : {type : String, require : true, uniq : true},
+      password : {type : String, require : true},
+      token : String,
+      name : String,
+      email : {type : String, uniq : true},
+      lost : [ObjectSchema],
+      found : [ObjectSchema]
     },
-    password : {
-      type : String,
-      require : true
-    },
-    name : String,
-    email : {
-      type : String,
-      uniq : true,
-    },
-    lost : [ObjectSchema],
-    found : [ObjectSchema]
+    facebook : {
+      id : String,
+      token : String,
+      email : String,
+      name : String
+    }
+    // ,twitter : {
+    //   id : String,
+    //   token : String,
+    //   displayName : String,
+    //   username : String
+    // },
+    // google : {
+    //   id : String,
+    //   token : String,
+    //   email : String,
+    //   name : String
+    // }
   });
 
-mongoose.model('User',UserSchema)
+UserSchema.methods.generateHash = function(password){
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
 
-  var testUser = {
-    username : 'lulu',
-    password : '1234',
-    name : 'luisa',
-    email : "lufeza95@gmail.com"
-  }
-  // User.create([testUser]);
+UserSchema.methods.validPassword = function(password){
+  return bcrypt.compareSync(password, this.local.password);
+};
+
+UserSchema.methods.generateJWT = function(){
+  var today = new Date();
+  var exp = new Date(today);
+  exp.setDate(today.getDate() + 60);
+
+  return jwt.sign({
+    _id : this._id,
+    username : this.username,
+    exp : parseInt(exp.getDate() / 1000)
+  }, 'MEOW')
+}
+
+var User = mongoose.model('User',UserSchema)
+
+  var testUser = new User({
+    local : {
+    username : 'perry',
+    password : 'el-ornitorrinco',
+    name : 'gargar',
+    email : "agentP@gmail.com"
+  }}) 
 
