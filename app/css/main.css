@@ -1,6 +1,8 @@
-body{
-  background: url('../images/bg.jpg') no-repeat top left;
-  background-size: 100% 100%;
+
+body, html{
+background: #E55D87; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #E55D87 , #5FC3E4); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #E55D87 , #5FC3E4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .centered{
   text-align: center;
@@ -9,7 +11,32 @@ body{
   max-width: 90%;
   margin: auto;
 }
-
+.or{
+  padding: 20px 0;
+  color: white;
+  font-size: 30px;
+}
+.or span{
+  display: inline-block;
+  position: relative;  
+}
+.or span:before, .or span:after{
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+  top: 11px;
+  width: 600px;
+}
+.or span:before{
+  right: 100%;
+  margin-right: 15px;
+}
+.or span:after{
+  left: 100%;
+  margin-left: 15px;
+}
 /* MD Content Overwrites */
 md-content.md-default-theme, md-content{
   background: transparent;
@@ -17,7 +44,6 @@ md-content.md-default-theme, md-content{
 
 .header{
   background: transparent!important;
-
 }
 .header h1{
   color: white;
@@ -50,3 +76,22 @@ md-content.md-default-theme, md-content{
   background: transparent;
   color: white;
 }
+.socialLogins{
+  padding: 32px 250px!important;
+  font-size: 32px!important;
+  margin: 44px 0!important;
+}
+.googleBtn{
+  padding: 32px 270px!important;
+  font-size: 32px!important;
+  margin: 44px 0!important;
+  background: #d21616!important;
+}
+.twitterBtn{
+  padding: 32px 270px!important;
+  font-size: 32px!important;
+  margin: 44px 0!important;
+  background: #44b7e8!important;
+}
+
+
