@@ -3,6 +3,10 @@ body, html{
 background: #E55D87; /* fallback for old browsers */
 background: -webkit-linear-gradient(to left, #E55D87 , #5FC3E4); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to left, #E55D87 , #5FC3E4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+font-size: 30px;
+}
+a{
+  color: white;
 }
 .centered{
   text-align: center;
@@ -38,6 +42,10 @@ background: linear-gradient(to left, #E55D87 , #5FC3E4); /* W3C, IE 10+/ Edge, F
 .or span:after{
   left: 100%;
   margin-left: 15px;
+}
+.text-white{
+  color: white;
+  padding: 74px;
 }
 /* MD Content Overwrites */
 md-content.md-default-theme, md-content{
@@ -79,6 +87,7 @@ md-content.md-default-theme, md-content{
   padding: 33px;
   background: transparent;
   color: white;
+  max-width: 89%;
 }
 #login md-input-container .md-input{
   height: 50px;
@@ -86,18 +95,18 @@ md-content.md-default-theme, md-content{
 .socialLogins{
   padding: 32px 250px!important;
   font-size: 32px!important;
-  margin: 44px 0!important;
+  margin: 24px 0 22px!important;
 }
 .googleBtn{
   padding: 32px 270px!important;
   font-size: 32px!important;
-  margin: 44px 0!important;
+  margin: 24px 0 22px!important;
   background: #d21616!important;
 }
 .twitterBtn{
   padding: 32px 270px!important;
   font-size: 32px!important;
-  margin: 44px 0!important;
+  margin: 24px 0 22px!important;
   background: #44b7e8!important;
 }
 
