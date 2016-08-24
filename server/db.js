@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt-nodejs');
+var jwt = require('jsonwebtoken');
 
 
   var ObjectSchema = new mongoose.Schema({
@@ -48,13 +49,25 @@ UserSchema.methods.validPassword = function(password){
   return bcrypt.compareSync(password, this.local.password);
 };
 
-mongoose.model('User',UserSchema)
+UserSchema.methods.generateJWT = function(){
+  var today = new Date();
+  var exp = new Date(today);
+  exp.setDate(today.getDate() + 60);
 
-  var testUser = {
-    username : 'lulu',
-    password : '1234',
-    name : 'luisa',
-    email : "lufeza95@gmail.com"
-  }
-  // User.create([testUser]);
+  return jwt.sign({
+    _id : this._id,
+    username : this.username,
+    exp : parseInt(exp.getDate() / 1000)
+  }, 'MEOW')
+}
+
+var User = mongoose.model('User',UserSchema)
+
+  var testUser = new User({
+    local : {
+    username : 'perry',
+    password : 'el-ornitorrinco',
+    name : 'gargar',
+    email : "agentP@gmail.com"
+  }}) 
 

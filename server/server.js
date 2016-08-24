@@ -31,7 +31,7 @@ app.get('/test', function(req, res){
 
 mongoose.connect('mongodb://localhost/honest');
 // mongoose.connect('mongodb://');
-//this needs to be changed before deployment 
+//this needs to be set up with mlab 
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
