@@ -25,3 +25,37 @@ angular.module("honestApp", [
 .controller('homeCtrl', ['$scope', function($scope){
   $scope.test = 'hello from controller';
 }])
+
+.factory('Token', function($window, $location){
+
+  saveToken = function(token){
+    $window.localStorage['Login-setup'] = token;
+  };
+
+  getToken = function(){
+    return $window.localStorage['Login-setup']
+  };
+
+  isLoggedIn = function(){
+    var token = getToken();
+    if(token){
+      var payload = JSON.parse($window.atob(token.split('.')[1]));
+      return payload.exp > Date.now() / 1000;
+    }else{
+      return false;
+    }
+  };
+
+  logOut = function(){
+    $window.localStorage.removeItem('Login-setup');
+    $location.path('/login')
+  };
+
+  return{
+    saveToken : saveToken,
+    getToken : getToken,
+    isLoggedIn : isLoggedIn,
+    logOut : logOut
+  }
+})
+>>>>>>> add token controller

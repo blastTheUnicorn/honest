@@ -1,4 +1,4 @@
-angular.module('LoginController', []).controller('LoginCtrl', function($scope, $location, $http){
+angular.module('LoginController', []).controller('LoginCtrl', function($scope, $location, $http, Token){
   $scope.user = {};
 
   $scope.goHome = function(){
@@ -14,10 +14,14 @@ angular.module('LoginController', []).controller('LoginCtrl', function($scope, $
       url: '/api/login',
       contentType: 'application/json',
       data: $scope.user
-    }).then(function(res){
+    }).then(function successCallback(res){
+      console.log("Testing", res);
+      Token.saveToken(res.data.token)
       $location.path('/home')
       return res;
-    })
+    }, function errorCallback(res){
+      console.log(res);
+    } )
   }
 
 
