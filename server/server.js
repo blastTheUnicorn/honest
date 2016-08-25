@@ -59,7 +59,20 @@ if(!req.body.username || !req.body.password){
   })(req, res, next);
 })
 
-
+app.post('/api/signUp', function(req, res, next){
+  if(!req.body.username || !req.body.password || !req.body.name || !req.body.email){
+    return res.status(400).json({message: 'Please fill out all fields'});
+ };
+ var user = new User();
+ user.local.name = req.body.name;
+ user.local.email = req.body.email;
+ user.local.username = req.body.username;
+ user.local.password = user.generateHash(req.body.password);
+ user.save(function(err){
+  if(err){return next(err);}
+  res.json({token: user.generateJWT()})
+ })
+});
 
 var server = app.listen(port, function(){
   console.log('WE OUT HERE LISTENING BRUH!!! PORT ' + port);
