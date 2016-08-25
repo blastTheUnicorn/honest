@@ -58,4 +58,3 @@ angular.module("honestApp", [
     logOut : logOut
   }
 })
->>>>>>> add token controller
