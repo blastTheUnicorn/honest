@@ -1,4 +1,4 @@
-angular.module('LoginController', []).controller('LoginCtrl', function($scope, $location){
+angular.module('LoginController', []).controller('LoginCtrl', function($scope, $location, $http){
   $scope.user = {};
 
   $scope.goHome = function(){
@@ -7,5 +7,19 @@ angular.module('LoginController', []).controller('LoginCtrl', function($scope, $
       $location.path('/home')
     }    
   }
+
+  $scope.login = function(){
+    console.log('user', $scope.user.username, "and password", $scope.user.password)
+    return $http({
+      method: 'POST',
+      url: '/api/login',
+      contentType: 'application/json',
+      data: $scope.user
+    }).then(function(res){
+      $location.path('/home')
+      return res;
+    })
+  }
+
 
 });
