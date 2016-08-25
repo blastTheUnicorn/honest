@@ -9,7 +9,6 @@ angular.module('LoginController', []).controller('LoginCtrl', function($scope, $
   }
 
   $scope.login = function(){
-    console.log('user', $scope.user.username, "and password", $scope.user.password)
     return $http({
       method: 'POST',
       url: '/api/login',
