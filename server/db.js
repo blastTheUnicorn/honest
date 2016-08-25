@@ -66,8 +66,9 @@ var User = mongoose.model('User',UserSchema)
   var testUser = new User({
     local : {
     username : 'perry',
-    password : 'el-ornitorrinco',
+    password : bcrypt.hashSync('el-ornitorrinco', bcrypt.genSaltSync(8), null),
     name : 'gargar',
     email : "agentP@gmail.com"
   }}) 
 
+// testUser.save();
