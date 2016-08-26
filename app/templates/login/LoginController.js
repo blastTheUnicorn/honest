@@ -1,5 +1,15 @@
-angular.module('LoginController', []).controller('LoginCtrl', function($scope, $location, $http, Token){
+angular.module('LoginController', []).controller('LoginCtrl', function($scope, $location, $http, Token, $mdMedia){
+  
   $scope.user = {};
+
+  $scope.$watch(function() { return $mdMedia('lg'); }, function(big) {
+    $scope.bigScreen = big;
+  });
+  $scope.screenIsSmall = $mdMedia('sm');
+  $scope.customQuery = $mdMedia('(min-width: 1234px)');
+  $scope.anotherCustom = $mdMedia('max-width: 300px');
+  
+  console.log($scope.$mdMedia)
 
   $scope.goHome = function(){
     if($scope.user.username === 'atlante' && $scope.user.password === 'july292006'){
