@@ -1,5 +1,5 @@
 angular.module('SingUpController', [])
-.controller('SignUpCtrl', function($scope, $location, $http){
+.controller('SignUpCtrl', function($scope, $location, $http, Token){
   $scope.user = {};
 
   $scope.signUp = function(){
@@ -9,6 +9,7 @@ angular.module('SingUpController', [])
       contentType: 'application/json',
       data: $scope.user
     }).then(function(res){
+      Token.saveToken(res.data.token)
       $location.path('/home')
       return res;
     })
