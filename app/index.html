@@ -25,12 +25,12 @@
 <script src="lib/angular-material/angular-material.js"></script>
 
 <body ng-app="honestApp">
-  
+<div id="wrap">
   <div>
 
     <md-sidenav md-component-id="left" md-is-locked-open="true">
 
-<!--       <md-list-item>
+<!--        <md-list-item>
         <md-button>
           <md-icon md-svg-src="..." class=""></md-icon>
           Atlante Avila
@@ -42,16 +42,18 @@
           Atlante Avila
         </md-button>
       </md-list-item>
--->
+ -->
 
     </md-sidenav>
 
     <md-content id="content">
-      <div ui-view></div>
+      <div ui-view="header"></div>
+      <div ui-view="container"></div>
+      <!-- <div ui-view></div> -->
     </md-content>
   
   </div>
-
+</div>  <!-- #wrap -->
   <script src="js/angularApp.js"></script>
 
 </body>
