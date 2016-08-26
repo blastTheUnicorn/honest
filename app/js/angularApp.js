@@ -1,4 +1,4 @@
-angular.module("honestApp", [
+angular.module('honestApp', [
   'ngMaterial', 
   'ui.router', 
   'LoginController',
@@ -7,20 +7,44 @@ angular.module("honestApp", [
 .config( function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/login')
   $stateProvider
-    .state('home', {
-      url: '/home',
-      templateUrl: '/templates/home/home.html'
-    })
-    .state('login', {
-      url: '/login',
-      templateUrl: '/templates/login/login.html',
-      controller: 'LoginCtrl'
-    })
-    .state('signup', {
-      url: '/signup',
-      templateUrl: '/templates/signup/signup.html',
-      controller: 'SignUpCtrl'
-    });
+  .state('login', {
+    url: '/login',
+    views: {
+      header: { 
+        templateUrl: '../templates/login/login-header.html' 
+        // controller: 'loginHeaderController' 
+      },
+      container: { 
+        templateUrl: '../templates/login/login-container.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  .state('home', {
+    url: '/home',
+    views:{
+      header: {
+        templateUrl: '../templates/headers/main-header.html'
+      },
+      container: {
+        templateUrl: '../templates/home/home.html'
+      }
+    }
+  })
+    // .state('home', {
+    //   url: '/home',
+    //   templateUrl: '/templates/home/home.html'
+    // })
+    // .state('login', {
+    //   url: '/login',
+    //   templateUrl: '/templates/login/login.html',
+    //   controller: 'LoginCtrl'
+    // })
+    // .state('signup', {
+    //   url: '/signup',
+    //   templateUrl: '/templates/signup/signup.html',
+    //   controller: 'SignUpCtrl'
+    // });
 })
 .controller('homeCtrl', ['$scope', function($scope){
   $scope.test = 'hello from controller';
