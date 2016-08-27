@@ -2,7 +2,8 @@ angular.module('honestApp', [
   'ngMaterial', 
   'ui.router', 
   'LoginController',
-  'SingUpController'])
+  'SingUpController',
+  'LostFoundController'])
 
 .config( function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/login')
@@ -31,20 +32,30 @@ angular.module('honestApp', [
       }
     }
   })
-    // .state('home', {
-    //   url: '/home',
-    //   templateUrl: '/templates/home/home.html'
-    // })
-    // .state('login', {
-    //   url: '/login',
-    //   templateUrl: '/templates/login/login.html',
-    //   controller: 'LoginCtrl'
-    // })
-    // .state('signup', {
-    //   url: '/signup',
-    //   templateUrl: '/templates/signup/signup.html',
-    //   controller: 'SignUpCtrl'
-    // });
+  .state('foundLost', {
+    url: '/lost-found',
+    views: {
+      header: {
+        templateUrl: '../templates/headers/main-header.html'
+      },
+      container: {
+        templateUrl: '../templates/foundLost/found-lost.html',
+        controller: 'LostFoundCtrl'
+      }
+    }
+  })
+  .state('signup', {
+    url: '/signup',
+    views: {
+      header: {
+        templateUrl: '../templates/headers/main-header.html'
+      },
+      container: {
+        templateUrl: '../templates/signup/signup.html',
+        controller: 'SignUpCtrl'
+      }
+    }
+  });
 })
 .controller('homeCtrl', ['$scope', function($scope){
   $scope.test = 'hello from controller';
