@@ -1,0 +1,9 @@
+<div layout="column">
+
+  <form> 
+      <md-select placeholder="Choose a category" ng-model="item" md-on-open="loadItems()" style="min-width: 200px;">
+      <md-option ng-value="item" ng-repeat="item in items">{{item.name}}</md-option>
+    </md-select>
+  </form>
+  
+</div>

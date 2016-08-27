@@ -14,6 +14,7 @@
 <!-- angular controllers -->
 <script src="templates/login/LoginController.js"></script>
 <script src="templates/signup/SingUpController.js"></script>
+<script src="templates/foundLost/LostFoundController.js"></script>
 
 <!-- end angular controllers -->
 
@@ -24,36 +25,35 @@
 <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="lib/angular-material/angular-material.js"></script>
 
-<body ng-app="honestApp">
-<div id="wrap">
-  <div>
+<body ng-app="honestApp" layout="column">
+<div layout="row">
+  <md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
 
-    <md-sidenav md-component-id="left" md-is-locked-open="true">
+     <md-list-item>
+      <md-button>
+        <md-icon md-svg-src="..." class=""></md-icon>
+        Atlante Avila
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button>
+        <md-icon md-svg-src="..." class=""></md-icon>
+        Atlante Avila
+      </md-button>
+    </md-list-item>
 
-<!--        <md-list-item>
-        <md-button>
-          <md-icon md-svg-src="..." class=""></md-icon>
-          Atlante Avila
-        </md-button>
-      </md-list-item>
-      <md-list-item>
-        <md-button>
-          <md-icon md-svg-src="..." class=""></md-icon>
-          Atlante Avila
-        </md-button>
-      </md-list-item>
- -->
 
-    </md-sidenav>
+  </md-sidenav>
 
-    <md-content id="content">
-      <div ui-view="header"></div>
-      <div ui-view="container"></div>
-      <!-- <div ui-view></div> -->
-    </md-content>
+
+  <md-content id="content" layout="column" flex>
+    <div ui-view="header"></div>
+    <div ui-view="container"></div>
+    <!-- <div ui-view></div> -->
+  </md-content>
   
-  </div>
-</div>  <!-- #wrap -->
+</div>
+
   <script src="js/angularApp.js"></script>
 
 </body>
