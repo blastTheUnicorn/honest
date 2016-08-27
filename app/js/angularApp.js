@@ -1,9 +1,10 @@
 angular.module('honestApp', [
   'ngMaterial', 
-  'ui.router', 
+  'ui.router',
   'LoginController',
   'SingUpController',
-  'LostFoundController'])
+  'LostFoundController',
+  'HomeController'])
 
 .config( function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/login')
@@ -28,7 +29,8 @@ angular.module('honestApp', [
         templateUrl: '../templates/headers/main-header.html'
       },
       container: {
-        templateUrl: '../templates/home/home.html'
+        templateUrl: '../templates/home/home.html',
+        controller: 'HomeCtrl'
       }
     }
   })
@@ -57,9 +59,6 @@ angular.module('honestApp', [
     }
   });
 })
-.controller('homeCtrl', ['$scope', function($scope){
-  $scope.test = 'hello from controller';
-}])
 
 .factory('Token', function($window, $location){
 
