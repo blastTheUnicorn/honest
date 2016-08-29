@@ -1,6 +1,6 @@
   <div layout="column" class="loginForm">
 
-    <form id="login">
+    <form id="login" ng-submit="login()" >
 
       <md-content class="md-no-momentum inner-form ">
 
@@ -19,12 +19,13 @@
         </md-input-container>
 
         <div class="centered">
-          <md-button ng-submit="login()" class="bigText">Submit</md-button>
+        <input type="submit">
+          <!-- <md-button   class="bigText">Submit</md-button> -->
         </div>
       
       </md-content>
 
-    </form>
+    </form >
 
   <div class="centered or">
     <span> Or </span>

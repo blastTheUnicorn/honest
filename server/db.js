@@ -4,22 +4,24 @@ var jwt = require('jsonwebtoken');
 
 
   var ObjectSchema = new mongoose.Schema({
+    _user : {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     lost : Boolean,
     found : Boolean,
+    coordenates : String,
     category : String,
     keyWords : String,
     comments : String
-  })
+  });
+  
 
   var UserSchema = new mongoose.Schema({
     local : {
       username : {type : String, require : true, uniq : true},
       password : {type : String, require : true},
-      token : String,
       name : String,
       email : {type : String, uniq : true},
-      lost : [ObjectSchema],
-      found : [ObjectSchema]
+      lost : [{type: mongoose.Schema.Types.ObjectId, ref: 'LostObject'}],
+      found : [{type: mongoose.Schema.Types.ObjectId, ref: 'FoundObject'}]
     },
     facebook : {
       id : String,
@@ -59,9 +61,11 @@ UserSchema.methods.generateJWT = function(){
     username : this.username,
     exp : parseInt(exp.getDate() / 1000)
   }, 'MEOW')
-}
+};
 
-var User = mongoose.model('User',UserSchema)
+var User = mongoose.model('User',UserSchema);
+var FoundObj = mongoose.model('FoundObject', ObjectSchema);
+var LostObj = mongoose.model('LostObject', ObjectSchema);
 
   var testUser = new User({
     local : {
@@ -71,4 +75,19 @@ var User = mongoose.model('User',UserSchema)
     email : "agentP@gmail.com"
   }}) 
 
-// testUser.save();
+
+
+// testUser.save(function(err){
+//   if(err){
+//     console.log(err)
+//   }
+//   var newObj = new FoundObj ({
+//     _user : testUser._id,
+//     lost : true,
+//     category : 'wallet'
+//   })
+
+//   newObj.save();
+
+// });
+
