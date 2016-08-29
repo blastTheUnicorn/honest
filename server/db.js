@@ -11,7 +11,7 @@ var jwt = require('jsonwebtoken');
     category : String,
     keyWords : String,
     comments : String
-  })
+  });
   
 
   var UserSchema = new mongoose.Schema({
@@ -61,7 +61,7 @@ UserSchema.methods.generateJWT = function(){
     username : this.username,
     exp : parseInt(exp.getDate() / 1000)
   }, 'MEOW')
-}
+};
 
 var User = mongoose.model('User',UserSchema);
 var FoundObj = mongoose.model('FoundObject', ObjectSchema);

@@ -19,6 +19,7 @@ angular.module('LoginController', []).controller('LoginCtrl', function($scope, $
   }
 
   $scope.login = function(){
+    console.log("Testing");
     return $http({
       method: 'POST',
       url: '/api/login',
