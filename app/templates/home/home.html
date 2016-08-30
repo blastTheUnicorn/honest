@@ -1,1 +1,11 @@
-<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+<div id="mapView">
+  <div id="mapDiv">
+    <ui-gmap-google-map center='coordenates.center' zoom='coordenates.zoom' control='control' options='coordenates.options'>
+    <ui-gmap-marker ng-if='flag' coords="marker.coords" idkey=0 options='marker.options' events='marker.events'>
+        </ui-gmap-marker>
+    <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position='searchbox.position'></ui-gmap-search-box> 
+    </ui-gmap-google-map>
+  </div>
+  <button ng-click='placeMarker()'>!!!!!</button>
+</div>
+
