@@ -9,7 +9,7 @@ angular.module('LoginController', []).controller('LoginCtrl', function($scope, $
   $scope.customQuery = $mdMedia('(min-width: 1234px)');
   $scope.anotherCustom = $mdMedia('max-width: 300px');
   
-  console.log($scope.$mdMedia)
+  // console.log($scope.$mdMedia)
 
   $scope.goHome = function(){
     if($scope.user.username === 'atlante' && $scope.user.password === 'july292006'){

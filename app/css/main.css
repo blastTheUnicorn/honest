@@ -6,12 +6,15 @@ body, html{
   background: linear-gradient(to left, #E55D87 , #5FC3E4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   font-family: "futura-pt",sans-serif;
 }
+body{
+  padding: 20px!important;
+}
 a{
   color: white;
   text-decoration: none;
 }
 
-.angular-google-map-container { height: 400px; width: 400px }
+.angular-google-map-container {height: 400px;width: 100%;}
 
 #headerTitle{
   text-align: center;
@@ -109,3 +112,133 @@ md-content.md-default-theme, md-content, md-toolbar._md-toolbar-transitions{
 .mainHeader{
   background: blue!important;
 }
+
+
+/*Start Claim Form*/
+
+#lost-found{
+  padding: 30px 20px;
+  min-height: 350px;
+}
+md-option{
+  background: white!important;
+}
+#form-container{
+  background: white;
+  margin-bottom:20px;
+  border-radius:5px;
+  padding-bottom: 10px;
+}
+#form-container .form-header{
+  background: #9379a5;
+  text-align: center;
+  padding: 20px 0;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+#form-container .page-header{ 
+  background:#151515; 
+  margin:0; 
+  padding:30px;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px; 
+}
+
+/* numbered buttons */
+#status-buttons{  
+
+}
+#status-buttons a {
+  color: white;
+  display:inline-block;
+  margin-right:10px;
+  text-align:center;
+  text-transform:uppercase;
+  font-size: 17px;
+}
+#status-buttons a:hover { 
+  text-decoration:none; 
+}
+
+/* we will style the span as the circled number */
+#status-buttons .cirular {
+  background: #080808;
+  display: block;
+  height: 24px;
+  margin: 0 auto 10px;
+  padding-top:5px;
+  width: 30px;
+  border-radius:50%;
+}
+
+/* active buttons turn light green-blue*/
+#status-buttons a.active .cirular {
+  background: #e55d87;
+}
+
+
+/*Start Form Animations*/
+#signup-form{ 
+  position:relative; 
+  min-height:500px; 
+  overflow:hidden; 
+  padding:30px; 
+}
+#form-views{
+  width:auto;
+}
+
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+#form-views.ng-enter, #form-views.ng-leave{
+  position:absolute; 
+  left: 30px;
+  right: 30px;
+  transition: 0.5s all ease; 
+  -moz-transition: 0.5s all ease; 
+  -webkit-transition: 0.5s all ease; 
+}
+    
+/* enter animation */
+#form-views.ng-enter{
+  -webkit-animation: slideInRight 0.5s both ease;
+  -moz-animation: slideInRight 0.5s both ease;
+  animation: slideInRight 0.5s both ease; 
+}
+
+/* leave animation */
+#form-views.ng-leave            { 
+    -webkit-animation:slideOutLeft 0.5s both ease;
+    -moz-animation:slideOutLeft 0.5s both ease;
+    animation:slideOutLeft 0.5s both ease;
+}
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+    to      { transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {  
+    to      { -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+    to      { -webkit-transform: translateX(-200%); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(200%); }
+    to      { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+    from    { -moz-transform:translateX(200%); }
+    to      { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+    from    { -webkit-transform:translateX(200%); }
+    to      { -webkit-transform: translateX(0); }
+}
+/*End Form Animatins*/
+/*End Claim Form*/
