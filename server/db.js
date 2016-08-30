@@ -5,9 +5,8 @@ var jwt = require('jsonwebtoken');
 
   var ObjectSchema = new mongoose.Schema({
     _user : {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    lost : Boolean,
-    found : Boolean,
-    coordenates : String,
+    lostOrFound: String,
+    position : [],
     category : String,
     keyWords : String,
     comments : String
@@ -22,13 +21,13 @@ var jwt = require('jsonwebtoken');
       email : {type : String, uniq : true},
       lost : [{type: mongoose.Schema.Types.ObjectId, ref: 'LostObject'}],
       found : [{type: mongoose.Schema.Types.ObjectId, ref: 'FoundObject'}]
-    },
-    facebook : {
-      id : String,
-      token : String,
-      email : String,
-      name : String
     }
+    // ,facebook : {
+    //   id : String,
+    //   token : String,
+    //   email : String,
+    //   name : String
+    // }
     // ,twitter : {
     //   id : String,
     //   token : String,

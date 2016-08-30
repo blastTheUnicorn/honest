@@ -6,6 +6,11 @@
     <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position='searchbox.position'></ui-gmap-search-box> 
     </ui-gmap-google-map>
   </div>
-  <button ng-click='placeMarker()'>!!!!!</button>
+  <div class='buttonsContainer'>
+    <md-button class='mapButton' ng-click='currentLocation()'>Current location</md-button>
+    <md-button class='mapButton' ng-click='placeMarker()'>Place Marker</md-button>
+    <md-button class='mapButton' ng-click='setLocation("lost")'>I lost it here</md-button>
+    <md-button class='mapButton' ng-click='setLocation("found")'>I found it here</md-button>
+  </div>
 </div>
 

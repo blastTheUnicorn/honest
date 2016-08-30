@@ -55,18 +55,6 @@ angular.module('honestApp', [
   })
   // End lost and found form here.
 
-  .state('home', {
-    url: '/home',
-    views:{
-      header: {
-        templateUrl: '../templates/headers/main-header.html'
-      },
-      container: {
-        templateUrl: '../templates/home/home.html',
-        controller: 'HomeCtrl'
-      }
-    }
-  })
   .state('signup', {
     url: '/signup',
     views: {

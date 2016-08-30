@@ -1,13 +1,5 @@
 angular.module('HomeController', ['uiGmapgoogle-maps'])
 
-// .config(['uiGmapGoogleMapApiProvider', function (GoogleMapApi) {
-//   GoogleMapApi.configure({
-//    key: 'AIzaSyC8QyS0EKhqSKmQp3zl8NUwvlgcN-6GUgQ',
-//     v: '3.17',
-//     libraries: 'places'
-//   });
-// }])
-
 .controller('HomeCtrl', function($scope, $location, $http, Token, $mdMedia){
   $scope.coordenates = {center: {latitude: 45, longitude: -72 }, zoom: 15 , options : {scrollwheel: false}}
   $scope.output = document.getElementById("mapView");
@@ -18,11 +10,11 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
     events: {
       dragend: function (marker, eventName, args) {
       console.log('marker dragend');
-      $scope.marker.coords.latitude = marker.getPosition().lat();
-      $scope.marker.coords.longitude = marker.getPosition().lng();
+      $scope.coordenates.center.latitude = marker.getPosition().lat();
+      $scope.coordenates.center.longitude = marker.getPosition().lng();
     }
    }
-  }
+  };
 
   $scope.searchbox = { 
     position:'TOP_CENTER',
@@ -35,40 +27,34 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
         $scope.control.refresh($scope.coordenates.center)
       }
     }
-  }
+  };
 
 
-$scope.currentLocation = function(){
-  if (!navigator.geolocation){
-    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-    return;
-  }
-  navigator.geolocation.getCurrentPosition(function(pos) {
-    $scope.coordenates.center.latitude = pos.coords.latitude;
-    $scope.coordenates.center.longitude = pos.coords.longitude;
-    console.log($scope.coordenates.center)
-    $scope.control.refresh($scope.coordenates.center)
-  }, 
-  function(error) {                    
-      alert('Unable to get location: ' + error.message);
-  }, $scope.options);
-}();
+  $scope.currentLocation = function(){
+    if (!navigator.geolocation){
+      output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      $scope.coordenates.center.latitude = pos.coords.latitude;
+      $scope.coordenates.center.longitude = pos.coords.longitude;
+      console.log($scope.coordenates.center)
+      $scope.control.refresh($scope.coordenates.center)
+    }, 
+    function(error) {                    
+        alert('Unable to get location: ' + error.message);
+    }, $scope.options);
+  };
+  $scope.currentLocation();
 
-$scope.placeMarker = function(){
-  $scope.flag = !$scope.flag
-  $scope.marker.coords = $scope.coordenates.center;
-}
+  $scope.placeMarker = function(){
+    $scope.flag = !$scope.flag
+    $scope.marker.coords = $scope.coordenates.center;
+  };
+
+  $scope.setLocation = function(LostOrFound){
+    $scope.formData.lostOrFound = LostOrFound;
+    $scope.formData.position = [$scope.coordenates.center.longitude, $scope.coordenates.center.latitude]
+  };
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
