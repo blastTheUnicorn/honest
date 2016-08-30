@@ -9,12 +9,12 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
 // }])
 
 .controller('HomeCtrl', function($scope, $location, $http, Token, $mdMedia){
-  $scope.coordenates = {center: {latitude: 45, longitude: -72 }, zoom: 15}
+  $scope.coordenates = {center: {latitude: 45, longitude: -72 }, zoom: 15 , options : {scrollwheel: false}}
   $scope.output = document.getElementById("mapView");
   $scope.options = {enableHighAccuracy: true};
   $scope.flag = false;
   $scope.control = {};
-  $scope.marker = {options: {draggable: true, animation : "BOUNCE"},
+  $scope.marker = {options: {draggable: true},
     events: {
       dragend: function (marker, eventName, args) {
       console.log('marker dragend');
