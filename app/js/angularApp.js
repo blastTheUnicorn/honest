@@ -6,6 +6,7 @@ angular.module('honestApp', [
   'LostFoundController',
   'HomeController',
   'FormController',
+  'DescriptionController',
   'ngAnimate'])
 
 .config( function($stateProvider, $urlRouterProvider){
