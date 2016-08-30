@@ -4,7 +4,9 @@ angular.module('honestApp', [
   'LoginController',
   'SingUpController',
   'LostFoundController',
-  'HomeController'])
+  'HomeController',
+  'FormController',
+  'ngAnimate'])
 
 .config( function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/login')
@@ -22,6 +24,37 @@ angular.module('honestApp', [
       }
     }
   })
+  
+  // Begin the lost and found form here.
+  .state('form', {
+    url: '/form',
+    views: {
+      header: {
+        templateUrl: '../templates/headers/main-header.html'
+      },
+      container: {
+        templateUrl: '../templates/form/form.html',
+        controller: 'FormCtrl'
+      }
+    }
+  })
+  .state('form.location', {
+    url: '/location',
+    templateUrl: '../templates/home/home.html',
+    controller: 'HomeCtrl'
+
+  })
+  .state('form.itemType', {
+      url: '/item-type',
+      templateUrl: '../templates/form/form-type.html',
+      controller: 'LostFoundCtrl'
+  })
+  .state('form.description', {
+    url: '/description',
+    templateUrl: '../templates/form/form-description.html'
+  })
+  // End lost and found form here.
+
   .state('home', {
     url: '/home',
     views:{
@@ -31,18 +64,6 @@ angular.module('honestApp', [
       container: {
         templateUrl: '../templates/home/home.html',
         controller: 'HomeCtrl'
-      }
-    }
-  })
-  .state('foundLost', {
-    url: '/lost-found',
-    views: {
-      header: {
-        templateUrl: '../templates/headers/main-header.html'
-      },
-      container: {
-        templateUrl: '../templates/foundLost/found-lost.html',
-        controller: 'LostFoundCtrl'
       }
     }
   })

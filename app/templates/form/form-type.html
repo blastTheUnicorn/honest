@@ -1,0 +1,8 @@
+<h2>Form - Type of Object</h2>
+<div layout="column">
+  <md-select placeholder="Choose a category" ng-model="formData.type" md-on-open="loadItems()">
+  <md-option ng-value="item" ng-repeat="item in items">
+    {{item.name}}
+  </md-option>
+  </md-select>
+</div>
