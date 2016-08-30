@@ -81,7 +81,7 @@ var LostObj = mongoose.model('LostObject', ObjectSchema);
 //     console.log(err)
 //   }
 //   var newObj = new FoundObj ({
-//     _user : testUser._id,
+//     _user : testUser._id, 
 //     lost : true,
 //     category : 'wallet'
 //   })
