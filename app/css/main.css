@@ -16,6 +16,18 @@ a{
 
 .angular-google-map-container {height: 400px;width: 100%;}
 
+input.ng-scope{
+  width: 300px;
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3)
+}
+
 #headerTitle{
   text-align: center;
   font-size: 120px;
@@ -108,6 +120,12 @@ md-content.md-default-theme, md-content, md-toolbar._md-toolbar-transitions{
   padding: 12px!important;
   min-width: 300px!important;
 }
+.md-button.mapButton{
+  font-size: 20px!important;
+  padding: 10px!important;
+  min-width: 200px!important;
+}
+
 
 .mainHeader{
   background: blue!important;
