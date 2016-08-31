@@ -6,7 +6,7 @@ angular.module('honestApp', [
   'LostFoundController',
   'HomeController',
   'FormController',
-  'DescriptionController',
+  'ColorsController',
   'ngAnimate'])
 
 .config( function($stateProvider, $urlRouterProvider){
@@ -49,6 +49,11 @@ angular.module('honestApp', [
       url: '/item-type',
       templateUrl: '../templates/form/form-type.html',
       controller: 'LostFoundCtrl'
+  })
+  .state('form.colors', {
+    url: '/colors',
+    templateUrl: '../templates/form/form-colors.html',
+    controller: 'ColorsCtrl'
   })
   .state('form.description', {
     url: '/description',

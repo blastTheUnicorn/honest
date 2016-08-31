@@ -3,9 +3,14 @@
     <div class="form-header">
       <h2>Start here to report your lost or found item!</h2>
       <div id="status-buttons" class="text-center">
+        
         <a ui-sref-active="active" ui-sref=".location"><span class="cirular">1</span><span class="text">Incident Location</span></a>
+
         <a ui-sref-active="active" ui-sref=".itemType"><span class="cirular">2</span><span class="text">Item Type</span></a>
-        <a ui-sref-active="active" ui-sref=".description"><span class="cirular">3</span><span class="text">Description</span></a>
+        
+        <a ui-sref-active="active" ui-sref=".colors"><span class="cirular">3</span><span class="text">Colors</span></a>
+
+        <a ui-sref-active="active" ui-sref=".description"><span class="cirular">4</span><span class="text">Description</span></a>
       </div>
     </div> <!-- .form-header -->
     <form id="lost-found" ng-submit="processForm()">
