@@ -1,0 +1,28 @@
+<h2>Add tags that describe the item</h2>
+<md-content>
+<md-input-container>
+<label>Color</label>
+<md-select ng-model="formData.colors" multiple>
+  <md-optgroup label="Main Color">
+    <md-option ng-value="color.name" ng-repeat="color in colors | filter: {category: 'main' }">{{color.name}}</md-option>
+  </md-optgroup>
+</md-select>
+</md-input-container>
+</md-content>
+
+<md-content>
+<md-input-container>
+<label>Sub Colors</label>
+<md-select ng-model="formData.subColors" multiple>
+  <md-optgroup label="Sub Color">
+    <md-option ng-value="subColor.name" ng-repeat="subColor in subColors | filter: {category: 'sub' }">{{subColor.name}}</md-option>
+  </md-optgroup>
+</md-select>
+</md-input-container>
+</md-content>
+
+
+<md-content>
+  <md-button ui-sref="form.description" class="md-accent md-raised">Next Section</md-button flex>
+</md-content>
+</md-content>

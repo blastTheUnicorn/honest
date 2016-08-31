@@ -1,4 +1,5 @@
 <h2>Form - Type of Object</h2>
+<md-input-container>
 <div layout="column">
   <md-select placeholder="Choose a category" ng-model="formData.type" md-on-open="loadItems()">
   <md-option ng-value="item" ng-repeat="item in items">
@@ -6,3 +7,8 @@
   </md-option>
   </md-select>
 </div>
+</md-input-container>
+
+<md-input-container>
+<md-button ui-sref="form.colors" class="md-accent md-raised">Next Section</md-button flex>
+</md-input-container>
