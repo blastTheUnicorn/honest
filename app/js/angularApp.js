@@ -7,6 +7,7 @@ angular.module('honestApp', [
   'HomeController',
   'FormController',
   'ColorsController',
+  'MainController',
   'ngAnimate'])
 
 .config( function($stateProvider, $urlRouterProvider){
@@ -16,8 +17,7 @@ angular.module('honestApp', [
     url: '/login',
     views: {
       header: { 
-        templateUrl: '../templates/login/login-header.html' 
-        // controller: 'loginHeaderController' 
+        templateUrl: '../templates/login/login-header.html'
       },
       container: { 
         templateUrl: '../templates/login/login-container.html',
@@ -31,7 +31,8 @@ angular.module('honestApp', [
     url: '/form',
     views: {
       header: {
-        templateUrl: '../templates/headers/main-header.html'
+        templateUrl: '../templates/headers/main-header.html',
+        controller: 'MainCtrl' 
       },
       container: {
         templateUrl: '../templates/form/form.html',
@@ -65,7 +66,7 @@ angular.module('honestApp', [
     url: '/signup',
     views: {
       header: {
-        templateUrl: '../templates/headers/main-header.html'
+        templateUrl: '../templates/login/login-header.html'
       },
       container: {
         templateUrl: '../templates/signup/signup.html',

@@ -16,6 +16,11 @@ a{
 
 .angular-google-map-container {height: 400px;width: 100%;}
 
+#logout{
+  cursor:pointer;
+  width: 90px
+}
+
 input.ng-scope{
   width: 300px;
   margin-top: 10px;
