@@ -19,7 +19,6 @@ angular.module('LoginController', []).controller('LoginCtrl', function($scope, $
   }
 
   $scope.login = function(){
-    console.log("Testing");
     return $http({
       method: 'POST',
       url: '/api/login',
@@ -28,7 +27,7 @@ angular.module('LoginController', []).controller('LoginCtrl', function($scope, $
     }).then(function successCallback(res){
       console.log("Testing", res);
       Token.saveToken(res.data.token)
-      $location.path('/home')
+      $location.path('/form/location')
       return res;
     }, function errorCallback(res){
       console.log(res);

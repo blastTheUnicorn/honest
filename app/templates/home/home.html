@@ -1,5 +1,6 @@
 <div id="mapView">
   <div id="mapDiv">
+      <md-progress-linear ng-if="load" mode="indeterminate" class="md-accent"></md-progress-linear>
     <ui-gmap-google-map center='coordenates.center' zoom='coordenates.zoom' control='control' options='coordenates.options'>
     <ui-gmap-marker ng-if='flag' coords="marker.coords" idkey=0 options='marker.options' events='marker.events'>
         </ui-gmap-marker>
@@ -8,7 +9,7 @@
   </div>
   <div class='buttonsContainer'>
     <md-button class='mapButton' ng-click='currentLocation()'>Current location</md-button>
-    <md-button class='mapButton' ng-click='placeMarker()'>Place Marker</md-button>
+    <!-- <md-button class='mapButton' ng-click='placeMarker()'>Place Marker</md-button> -->
     <md-button class='mapButton' ng-click='setLocation("lost")'>I lost it here</md-button>
     <md-button class='mapButton' ng-click='setLocation("found")'>I found it here</md-button>
   </div>

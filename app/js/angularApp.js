@@ -88,8 +88,9 @@ angular.module('honestApp', [
   isLoggedIn = function(){
     var token = getToken();
     if(token){
+      // console.log(token)
       var payload = JSON.parse($window.atob(token.split('.')[1]));
-      return payload.exp > Date.now() / 1000;
+      return payload.exp > 0 ;
     }else{
       return false;
     }
@@ -100,10 +101,20 @@ angular.module('honestApp', [
     $location.path('/login')
   };
 
+  currentUser = function(){
+    console.log("Testing", isLoggedIn() );
+    if(isLoggedIn()){
+      var token = getToken();
+      var payload = JSON.parse($window.atob(token.split('.')[1]));
+      console.log("Testing", payload);
+      return payload._id;
+    }
+  };
   return{
     saveToken : saveToken,
     getToken : getToken,
     isLoggedIn : isLoggedIn,
-    logOut : logOut
+    logOut : logOut,
+    currentUser : currentUser
   }
 })
