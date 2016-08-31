@@ -10,7 +10,7 @@ angular.module('SingUpController', [])
       data: $scope.user
     }).then(function(res){
       Token.saveToken(res.data.token)
-      $location.path('/home')
+      $location.path('/form/location')
       return res;
     })
   }

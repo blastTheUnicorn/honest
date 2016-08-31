@@ -8,10 +8,12 @@ var app = express();
 var db = require('./db.js');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var ObjectModel = mongoose.model('ObjectModel');
 
 
- // mongoose.connect('mongodb://localhost/honest');
-mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
+
+ mongoose.connect('mongodb://localhost/honest');
+// mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
 //this needs to be set up with mlab 
 
 var db = mongoose.connection;
@@ -44,6 +46,18 @@ app.get('/test', function(req, res){
   res.send(new Buffer('Hello World!'));
 });
 
+app.param('user', function(req, res, next, id){
+  var query = User.findById(id);
+
+  query.exec(function(err, user){
+    if (err) { return next(err); }
+    if (!user) { return next(new Error('Can\'t find user')); }
+
+    req.user = user;
+    return next();
+  });
+});
+
 app.post('/api/login', function(req, res, next){
 if(!req.body.username || !req.body.password){
     return res.status(400).json({message: 'Please fill out all fields'});
@@ -73,6 +87,26 @@ app.post('/api/signUp', function(req, res, next){
   res.json({token: user.generateJWT()})
  })
 });
+
+app.post('/api/user/:user', function(req, res, next){
+  var object = new ObjectModel();
+  object.lostOrFound = req.body.lostOrFound;
+  object.position = req.body.position;
+  object.category = req.body.type.name;
+  object._user = req.user._id
+  object.save(function(err, obj){
+    if(err){return next(err)}
+    if(req.body.lostOrFound === 'lost'){
+    req.user.local.lost.push(obj)
+    }else{
+    req.user.local.found.push(obj)
+    }
+    req.user.save(function(err, obj){
+    if(err){return next(err)}
+    res.json(obj)
+    })
+  })
+})
 
 var server = app.listen(port, function(){
   console.log('WE OUT HERE LISTENING BRUH!!! PORT ' + port);

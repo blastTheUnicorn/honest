@@ -1,5 +1,5 @@
 angular.module('FormController', [])
-.controller('FormCtrl', function($scope){
+.controller('FormCtrl', function($scope, $http, Token){
   
   // store all form data in this object
   $scope.formData = {
@@ -8,7 +8,10 @@ angular.module('FormController', [])
 
   // function to process our form
   $scope.processForm = function () {
-    alert('awesome!');
+    var userID = Token.currentUser()
+    return $http.post('/api/user/' + userID, $scope.formData).success(function(data){
+      console.log("Testing", data);
+    })
   }
 
 });

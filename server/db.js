@@ -19,8 +19,8 @@ var jwt = require('jsonwebtoken');
       password : {type : String, require : true},
       name : String,
       email : {type : String, uniq : true},
-      lost : [{type: mongoose.Schema.Types.ObjectId, ref: 'LostObject'}],
-      found : [{type: mongoose.Schema.Types.ObjectId, ref: 'FoundObject'}]
+      lost : [{type: mongoose.Schema.Types.ObjectId, ref: 'ObjectModel'}],
+      found : [{type: mongoose.Schema.Types.ObjectId, ref: 'ObjectModel'}]
     }
     // ,facebook : {
     //   id : String,
@@ -58,13 +58,12 @@ UserSchema.methods.generateJWT = function(){
   return jwt.sign({
     _id : this._id,
     username : this.username,
-    exp : parseInt(exp.getDate() / 1000)
+    exp : parseInt(exp.getDate())
   }, 'MEOW')
 };
 
 var User = mongoose.model('User',UserSchema);
-var FoundObj = mongoose.model('FoundObject', ObjectSchema);
-var LostObj = mongoose.model('LostObject', ObjectSchema);
+var ObjectModel = mongoose.model('ObjectModel', ObjectSchema);
 
   var testUser = new User({
     local : {
