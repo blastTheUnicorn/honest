@@ -141,6 +141,14 @@ md-content.md-default-theme, md-content, md-toolbar._md-toolbar-transitions{
 md-option{
   background: white!important;
 }
+md-optgroup{
+  background: white;
+}
+
+md-input-container{
+  min-width: 100%;
+}
+
 #form-container{
   background: white;
   margin-bottom:20px;
