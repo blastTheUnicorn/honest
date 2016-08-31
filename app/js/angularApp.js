@@ -73,6 +73,17 @@ angular.module('honestApp', [
         controller: 'SignUpCtrl'
       }
     }
+  })
+  .state('feed', {
+    url: '/feed',
+    views: {
+      header: {
+        templateUrl: '../templates/headers/main-header.html',
+      },
+      container: {
+        templateUrl: '../templates/feed/feed.html'
+      }
+    }
   });
 })
 
