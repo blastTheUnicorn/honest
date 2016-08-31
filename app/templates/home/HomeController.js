@@ -6,6 +6,7 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
   $scope.options = {enableHighAccuracy: true};
   $scope.flag = false;
   $scope.control = {};
+  $scope.load = true;
   $scope.marker = {options: {draggable: true},
     events: {
       dragend: function (marker, eventName, args) {
@@ -31,6 +32,7 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
 
 
   $scope.currentLocation = function(){
+    $scope.load = true
     if (!navigator.geolocation){
       output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
       return;
@@ -39,6 +41,7 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
       $scope.coordenates.center.latitude = pos.coords.latitude;
       $scope.coordenates.center.longitude = pos.coords.longitude;
       console.log($scope.coordenates.center)
+      $scope.load = false;
       $scope.control.refresh($scope.coordenates.center)
     }, 
     function(error) {                    
@@ -53,6 +56,7 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
   };
 
   $scope.setLocation = function(LostOrFound){
+    $scope.placeMarker()
     $scope.formData.lostOrFound = LostOrFound;
     $scope.formData.position = [$scope.coordenates.center.longitude, $scope.coordenates.center.latitude]
   };
