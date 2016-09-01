@@ -90,10 +90,12 @@ app.post('/api/signUp', function(req, res, next){
 
 app.post('/api/user/:user', function(req, res, next){
   var object = new ObjectModel();
+  object._user = req.user._id
   object.lostOrFound = req.body.lostOrFound;
   object.position = req.body.position;
   object.category = req.body.type.name;
-  object._user = req.user._id
+  object.keyWords = req.body.colors;
+  object.comments = req.body.description;
   object.save(function(err, obj){
     if(err){return next(err)}
     if(req.body.lostOrFound === 'lost'){
@@ -106,7 +108,19 @@ app.post('/api/user/:user', function(req, res, next){
     res.json(obj)
     })
   })
-})
+});
+app.get('/api/user/:user/obj', function(req, res){
+  User
+  .findOne(req.user._id)
+  .populate('local.lost')
+  .populate('local.found')
+  .exec(function(err, obj){
+    console.log("Testing", obj);
+    res.json(obj)
+
+  })
+
+});
 
 var server = app.listen(port, function(){
   console.log('WE OUT HERE LISTENING BRUH!!! PORT ' + port);

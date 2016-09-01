@@ -8,6 +8,7 @@ angular.module('honestApp', [
   'FormController',
   'ColorsController',
   'MainController',
+  'FeedController',
   'ngAnimate'])
 
 .config( function($stateProvider, $urlRouterProvider){
@@ -78,10 +79,12 @@ angular.module('honestApp', [
     url: '/feed',
     views: {
       header: {
-        templateUrl: '../templates/headers/main-header.html',
+        templateUrl: '../templates/headers/main-header.html'
+        
       },
       container: {
-        templateUrl: '../templates/feed/feed.html'
+        templateUrl: '../templates/feed/feed.html',
+        controller: 'FeedCtrl'
       }
     }
   });
@@ -114,11 +117,11 @@ angular.module('honestApp', [
   };
 
   currentUser = function(){
-    console.log("Testing", isLoggedIn() );
+    // console.log("Testing", isLoggedIn() );
     if(isLoggedIn()){
       var token = getToken();
       var payload = JSON.parse($window.atob(token.split('.')[1]));
-      console.log("Testing", payload);
+      // console.log("Testing", payload);
       return payload._id;
     }
   };
