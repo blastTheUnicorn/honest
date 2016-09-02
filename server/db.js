@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 
@@ -21,7 +22,7 @@ var jwt = require('jsonwebtoken');
       username : {type : String, require : true, unique: true},
       password : {type : String, require : true},
       name : String,
-      email : {type : String, unique: true},
+      email : {type : String, require : true, unique: true},
       lost : [{type: mongoose.Schema.Types.ObjectId, ref: 'ObjectModel'}],
       found : [{type: mongoose.Schema.Types.ObjectId, ref: 'ObjectModel'}]
     }
@@ -64,6 +65,7 @@ UserSchema.methods.generateJWT = function(){
     exp : parseInt(exp.getDate())
   }, 'MEOW')
 };
+UserSchema.plugin(uniqueValidator, { message: 'Error, expected {PATH} to be unique.' })
 
 var User = mongoose.model('User',UserSchema);
 
