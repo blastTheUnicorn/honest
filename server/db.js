@@ -6,7 +6,10 @@ var jwt = require('jsonwebtoken');
   var ObjectSchema = new mongoose.Schema({
     _user : {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     lostOrFound: String,
-    position : [],
+    loc: {
+      type: [Number],  // [<longitude>, <latitude>]
+      index: '2d'      // create the geospatial index
+    },
     category : String,
     keyWords : String,
     comments : String
@@ -15,10 +18,10 @@ var jwt = require('jsonwebtoken');
 
   var UserSchema = new mongoose.Schema({
     local : {
-      username : {type : String, require : true, uniq : true},
+      username : {type : String, require : true, unique: true},
       password : {type : String, require : true},
       name : String,
-      email : {type : String, uniq : true},
+      email : {type : String, unique: true},
       lost : [{type: mongoose.Schema.Types.ObjectId, ref: 'ObjectModel'}],
       found : [{type: mongoose.Schema.Types.ObjectId, ref: 'ObjectModel'}]
     }
@@ -63,16 +66,8 @@ UserSchema.methods.generateJWT = function(){
 };
 
 var User = mongoose.model('User',UserSchema);
+
 var ObjectModel = mongoose.model('ObjectModel', ObjectSchema);
-
-  var testUser = new User({
-    local : {
-    username : 'perry',
-    password : bcrypt.hashSync('el-ornitorrinco', bcrypt.genSaltSync(8), null),
-    name : 'gargar',
-    email : "agentP@gmail.com"
-  }}) 
-
 
 
 // testUser.save(function(err){
@@ -88,4 +83,3 @@ var ObjectModel = mongoose.model('ObjectModel', ObjectSchema);
 //   newObj.save();
 
 // });
-

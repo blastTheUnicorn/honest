@@ -12,8 +12,9 @@ var ObjectModel = mongoose.model('ObjectModel');
 
 
 
- // mongoose.connect('mongodb://localhost/honest');
-mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
+ mongoose.connect('mongodb://localhost/honest');
+// mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
+//this needs to be set up with mlab 
 
 var db = mongoose.connection;
 
@@ -22,7 +23,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
   console.log("db connected!");
 
-})
+});
 
 var app = express();
 var routes = require('./routes.js');
@@ -91,7 +92,7 @@ app.post('/api/user/:user', function(req, res, next){
   var object = new ObjectModel();
   object._user = req.user._id
   object.lostOrFound = req.body.lostOrFound;
-  object.position = req.body.position;
+  object.loc = req.body.position;
   object.category = req.body.type.name;
   object.keyWords = req.body.colors;
   object.comments = req.body.description;
@@ -108,12 +109,14 @@ app.post('/api/user/:user', function(req, res, next){
     })
   })
 });
+
 app.get('/api/user/:user/obj', function(req, res){
   User
   .findOne(req.user._id)
   .populate('local.lost')
   .populate('local.found')
   .exec(function(err, obj){
+    console.log("Testing", obj);
     res.json(obj)
 
   })
