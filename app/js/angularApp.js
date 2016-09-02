@@ -79,7 +79,9 @@ angular.module('honestApp', [
     url: '/feed',
     views: {
       header: {
-        templateUrl: '../templates/headers/main-header.html'
+        templateUrl: '../templates/headers/main-header.html',
+        controller: 'MainCtrl'
+        
         
       },
       container: {

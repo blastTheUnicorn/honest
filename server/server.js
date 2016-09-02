@@ -12,9 +12,8 @@ var ObjectModel = mongoose.model('ObjectModel');
 
 
 
- mongoose.connect('mongodb://localhost/honest');
-// mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
-//this needs to be set up with mlab 
+ // mongoose.connect('mongodb://localhost/honest');
+mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
 
 var db = mongoose.connection;
 
