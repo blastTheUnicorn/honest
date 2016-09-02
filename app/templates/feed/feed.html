@@ -1,36 +1,68 @@
 <md-content>
-  <md-card ng-repeat='item in lost'>
-    <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline"> {{ item.lostOrFound }} </span>
-        <span class="md-headline"> {{ item.category }} </span>
-        <span class="md-subhead"> {{ item.keyWords }} </span>
-      </md-card-title-text>
-      <md-card-title-media>
-        <div class="md-media-lg card-media"></div>
-      </md-card-title-media>
-    </md-card-title>
-    <md-card-actions layout="row" layout-align="end center">
-      <md-button>Edit</md-button>
-      <md-button class="md-accent md-raised" >Resolve</md-button>
-    </md-card-actions>
-  </md-card>
+<div layout="column">
+  <h2 class='feedTitles'>Possible Match</h2>
+  <md-progress-linear  class="md-accent md-hue-2" md-diameter="40"></md-progress-linear>
+    <md-card ng-repeat='item in possibleMatch'>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline"> {{ item.lostOrFound }} </span>
+          <span class="md-headline"> {{ item.category }} </span>
+          <span class="md-subhead"> {{ item.keyWords }} </span>
+        </md-card-title-text>
+        <md-card-title-media>
+          <div class="md-media-lg card-media"></div>
+        </md-card-title-media>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button>Edit</md-button>
+        <md-button class="md-accent md-raised" ng-click='resolve()' >Resolve</md-button>
+      </md-card-actions>
+    </md-card>
+    <br>
+    <br>
+</div>
 
-  <md-card ng-repeat='item in found'>
-    <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline"> {{ item.lostOrFound }} </span>
-        <span class="md-headline"> {{ item.category }} </span>
-        <span class="md-subhead"> {{ item.keyWords }} </span>
-      </md-card-title-text>
-      <md-card-title-media>
-        <div class="md-media-lg card-media"></div>
-      </md-card-title-media>
-    </md-card-title>
-    <md-card-actions layout="row" layout-align="end center">
-      <md-button>Edit</md-button>
-      <md-button class="md-accent md-raised" >Resolve</md-button>
-    </md-card-actions>
-  </md-card>
+<div layout="row">
+  <div flex-xs flex-gt-xs="50" layout="column">
+  <h2 class='feedTitles'>Lost Items</h2>
+    <md-card ng-repeat='item in lost'>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline"> {{ item.lostOrFound.toUpperCase() }} </span><br>
+          <span class="md-headline"> {{ item.category }} </span>
+          <span class="md-subhead"> {{ item.keyWords }} </span>
+        </md-card-title-text>
+        <md-card-title-media>
+          <div class="md-media-lg card-media"></div>
+        </md-card-title-media>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class='feedButton' ng-click='edit()'>Edit</md-button>
+        <md-button class="feedButton md-accent md-raised" ng-click='resolve()' >Resolve</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+    
+  <div flex-xs flex-gt-xs="50" layout="column">
+  <h2 class='feedTitles'>Found Items</h2>
+    <md-card ng-repeat='item in found'>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline"> {{ item.lostOrFound.toUpperCase() }} </span><br>
+          <span class="md-headline"> {{ item.category }} </span>
+          <span class="md-subhead"> {{ item.keyWords }} </span>
+        </md-card-title-text>
+        <md-card-title-media>
+          <div class="md-media-lg card-media"></div>
+        </md-card-title-media>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class='feedButton' ng-click='edit()'>Edit</md-button>
+        <md-button class="feedButton md-accent md-raised" ng-click='resolve()' >Resolve</md-button>
+      </md-card-actions>
+    </md-card>
+ </div>
+  
+</div>
 
 </md-content>

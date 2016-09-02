@@ -115,7 +115,6 @@ app.get('/api/user/:user/obj', function(req, res){
   .populate('local.lost')
   .populate('local.found')
   .exec(function(err, obj){
-    console.log("Testing", obj);
     res.json(obj)
 
   })
