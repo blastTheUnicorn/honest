@@ -103,7 +103,6 @@ angular.module('honestApp', [
   isLoggedIn = function(){
     var token = getToken();
     if(token){
-      // console.log(token)
       var payload = JSON.parse($window.atob(token.split('.')[1]));
       return payload.exp > 0 ;
     }else{
@@ -117,11 +116,9 @@ angular.module('honestApp', [
   };
 
   currentUser = function(){
-    // console.log("Testing", isLoggedIn() );
     if(isLoggedIn()){
       var token = getToken();
       var payload = JSON.parse($window.atob(token.split('.')[1]));
-      // console.log("Testing", payload);
       return payload._id;
     }
   };

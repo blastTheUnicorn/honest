@@ -40,7 +40,6 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
     navigator.geolocation.getCurrentPosition(function(pos) {
       $scope.coordenates.center.latitude = pos.coords.latitude;
       $scope.coordenates.center.longitude = pos.coords.longitude;
-      console.log($scope.coordenates.center)
       $scope.load = false;
       $scope.control.refresh($scope.coordenates.center)
     }, 
