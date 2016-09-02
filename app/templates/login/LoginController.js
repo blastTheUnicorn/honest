@@ -1,4 +1,4 @@
-angular.module('LoginController', []).controller('LoginCtrl', function($scope, $location, $http, Token, $mdMedia){
+angular.module('LoginController', []).controller('LoginCtrl', function($scope, $location, $http, Token, $mdMedia, $mdToast){
   
   $scope.user = {};
 
@@ -30,7 +30,15 @@ angular.module('LoginController', []).controller('LoginCtrl', function($scope, $
       $location.path('/form/location')
       return res;
     }, function errorCallback(res){
-      console.log(res);
+       $mdToast.show(
+        $mdToast.simple()
+        .textContent('Incorrect Password/Username Try Again')
+        .capsule(true)
+        .hideDelay(3000) 
+        .position('right')
+      )
+
+
     } )
   }
 
