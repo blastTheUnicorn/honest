@@ -13,6 +13,8 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
       console.log('marker dragend');
       $scope.coordenates.center.latitude = marker.getPosition().lat();
       $scope.coordenates.center.longitude = marker.getPosition().lng();
+      $scope.formData.position = [marker.getPosition().lng(), marker.getPosition().lat()]
+
     }
    }
   };
@@ -20,8 +22,11 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
   $scope.searchbox = { 
     position:'TOP_CENTER',
     // template:'/searchbox.tpl.html', 
+    parentdiv:'searchBoxParent',
     events:{
       places_changed: function (searchBox) {
+        $scope.flag = false;
+        $scope.formData.position = {}
         var places =searchBox.getPlaces()
         $scope.coordenates.center.latitude = places[0].geometry.location.lat()
         $scope.coordenates.center.longitude = places[0].geometry.location.lng()
@@ -38,6 +43,8 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
       return;
     }
     navigator.geolocation.getCurrentPosition(function(pos) {
+      $scope.flag = false;
+      $scope.formData = {}
       $scope.coordenates.center.latitude = pos.coords.latitude;
       $scope.coordenates.center.longitude = pos.coords.longitude;
       $scope.load = false;
@@ -56,6 +63,7 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
 
   $scope.setLocation = function(LostOrFound){
     $scope.placeMarker()
+    console.log("Testing",  $scope.formData);
     $scope.formData.lostOrFound = LostOrFound;
     $scope.formData.position = [$scope.coordenates.center.longitude, $scope.coordenates.center.latitude]
   };

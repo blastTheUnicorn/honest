@@ -1,13 +1,15 @@
 <h2>Form - Type of Object</h2>
+<md-content>
 <md-input-container>
-<div layout="column">
-  <md-select placeholder="Choose a category" ng-model="formData.type" md-on-open="loadItems()">
-  <md-option ng-value="item" ng-repeat="item in items">
-    {{item.name}}
-  </md-option>
-  </md-select>
-</div>
+<label>Choose a category</label>
+<md-select  ng-model="formData.type" md-on-open="loadItems()">
+  <md-optgroup label="Type">
+    <md-option ng-value="item.name" ng-repeat="item in items">{{item.name}}</md-option>
+  </md-optgroup>
+</md-select>
 </md-input-container>
+</md-content>
+
 
 <md-input-container>
 <md-button ui-sref="form.colors" class="md-accent md-raised">Next Section</md-button flex>
