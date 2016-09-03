@@ -145,10 +145,17 @@ app.get('/api/user/:user/obj', function(req, res){
   .populate('local.lost')
   .populate('local.found')
   .exec(function(err, obj){
-    console.log("Testing", obj);
     res.json(obj)
   })
+});
 
+app.get('/api/obj/:obj', function(req, res){
+  ObjectModel
+    .findOne({_id : req.params.obj})
+    .remove()
+    .exec(function(err, obj){
+      res.json(obj)
+     })
 });
 
 var server = app.listen(port, function(){
