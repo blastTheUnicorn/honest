@@ -17,9 +17,9 @@ angular.module('FeedController', [])
   $scope.resolve = function(item){
 
     var confirm = $mdDialog.confirm()
-    .title('Are you sure?')
-    .textContent('this action cannot be undone')
-    .ok('Yes')
+    .title('once resolved you are not going to be able to see this item')
+    .textContent('Are you sure?')
+    .ok('Yes, Resolve')
     .cancel('No');
 
     $mdDialog.show(confirm).then(function() {

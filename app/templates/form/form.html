@@ -2,6 +2,10 @@
   <div id="form-container">
     <div class="form-header">
       <h2>Start here to report your lost or found item!</h2>
+    <pre>
+      form data: 
+      {{formData}}
+    </pre>
       <div id="status-buttons" class="text-center">
         
         <a ui-sref-active="active" ui-sref=".location"><span class="cirular">1</span><span class="text">Incident Location</span></a>
@@ -16,9 +20,5 @@
     <form id="lost-found">
       <div id="form-views" ui-view></div>
     </form>
-<!--     <pre>
-      form data: 
-      {{formData}}
-    </pre>
- -->  </div>
+  </div>
 </div>

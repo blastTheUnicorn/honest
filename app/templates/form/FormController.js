@@ -2,13 +2,12 @@ angular.module('FormController', [])
 .controller('FormCtrl', function($scope, $http, Token, $location, $mdToast){
   
   // store all form data in this object
-  $scope.formData = {
-    position: $scope.position
-  };
+  $scope.formData = {};
 
   // function to process our form
   $scope.processForm = function () {
-    if(!$scope.formData.type && !$scope.formData.colors && !$scope.formData.lostOrFound){
+    if(!$scope.formData.lostOrFound || !$scope.formData.position){
+      console.log("Testing", $scope.formData);
       $mdToast.show(
         $mdToast.simple()
         .textContent('Fill All The Fields')
