@@ -22,6 +22,7 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
   $scope.searchbox = { 
     position:'TOP_CENTER',
     // template:'/searchbox.tpl.html', 
+    parentdiv:'searchBoxParent',
     events:{
       places_changed: function (searchBox) {
         $scope.flag = false;
