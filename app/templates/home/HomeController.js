@@ -63,6 +63,7 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
 
   $scope.setLocation = function(LostOrFound){
     $scope.placeMarker()
+    console.log("Testing",  $scope.formData);
     $scope.formData.lostOrFound = LostOrFound;
     $scope.formData.position = [$scope.coordenates.center.longitude, $scope.coordenates.center.latitude]
   };

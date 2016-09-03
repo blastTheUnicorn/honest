@@ -12,17 +12,6 @@ angular.module('ColorsController', [])
     { category: 'main', name: 'Purple'},
     { category: 'main', name: 'Gray'}
   ];
-  $scope.subColors = [
-    { category: 'sub', name: 'White '},
-    { category: 'sub', name: 'Black '},
-    { category: 'sub', name: 'Red '},
-    { category: 'sub', name: 'Orange '},
-    { category: 'sub', name: 'Yellow '},
-    { category: 'sub', name: 'Green '},
-    { category: 'sub', name: 'Blue '},
-    { category: 'sub', name: 'Purple '},
-    { category: 'sub', name: 'Gray '}
-  ];
 
   $scope.selectedColors = [];
   $scope.printSelectedColors = function printSelectedColors() {

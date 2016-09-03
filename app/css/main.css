@@ -34,8 +34,8 @@ h2{
 }
 
 input.ng-scope{
-  width: 300px;
-  margin-top: 10px;
+  width: 100%;
+  margin-top: 20px;
   border: 1px solid transparent;
   border-radius: 2px 0 0 2px;
   box-sizing: border-box;
