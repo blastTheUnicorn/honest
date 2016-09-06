@@ -1,10 +1,14 @@
 angular.module('HomeController', ['uiGmapgoogle-maps'])
 
 .controller('HomeCtrl', function($scope, $location, $http, Token, $mdMedia){
+  $scope.lost = false;
+  $scope.found = false;
   $scope.coordenates = {center: {latitude: 45, longitude: -72 }, zoom: 15 , options : {scrollwheel: false}}
   $scope.output = document.getElementById("mapView");
   $scope.options = {enableHighAccuracy: true};
   $scope.flag = false;
+  $scope.check = false;
+  $scope.started = false;
   $scope.coordenates.control = {};
   $scope.load = true;
   $scope.marker = {options: {draggable: true},
@@ -53,11 +57,17 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
   $scope.currentLocation();
 
   $scope.placeMarker = function(){
+    $scope.check = !$scope.check
     $scope.flag = !$scope.flag
     $scope.marker.coords = $scope.coordenates.center;
   };
 
   $scope.setLocation = function(LostOrFound){
+  if(LostOrFound === 'lost'){
+    $scope.lost = true;
+  } else {
+    $scope.found = true;
+  }   
     $scope.formData.lostOrFound = LostOrFound;
     $scope.formData.position = [$scope.coordenates.center.longitude, $scope.coordenates.center.latitude]
   };
