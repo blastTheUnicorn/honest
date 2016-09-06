@@ -1,6 +1,6 @@
 angular.module('HomeController', ['uiGmapgoogle-maps'])
 
-.controller('HomeCtrl', function($scope, $location, $http, Token, $mdMedia){
+.controller('HomeCtrl', function($scope, $location, $http, Token, $mdMedia, $mdDialog){
   $scope.lost = false;
   $scope.found = false;
   $scope.coordenates = {center: {latitude: 45, longitude: -72 }, zoom: 15 , options : {scrollwheel: false}}
@@ -71,5 +71,23 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
     $scope.formData.lostOrFound = LostOrFound;
     $scope.formData.position = [$scope.coordenates.center.longitude, $scope.coordenates.center.latitude]
   };
+
+  $scope.instructions = function(){
+
+    if(!document.cookie){
+      alert = $mdDialog.alert({
+        title: 'Attention',
+        textContent: 'This is an example of how easy dialogs can be!',
+        ok: 'Close'
+      })
+
+      $mdDialog
+      .show(alert)
+      .finally(function() {
+        alert = undefined;
+      });
+      document.cookie = 'instructions'
+    }
+  }();
 
 });
