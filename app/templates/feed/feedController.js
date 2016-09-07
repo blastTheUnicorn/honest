@@ -42,6 +42,12 @@ angular.module('FeedController', [])
     });
   };
 
+  $scope.sendEmail = function(){
+     var userID = Token.currentUser()
+    return $http.get('/api/' + userID + '/send').success(function(data){
+       console.log(data);
+    })
+  }
 
 
 })
