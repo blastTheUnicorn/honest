@@ -1,0 +1,36 @@
+<md-dialog aria-label="Send Email">
+  <form ng-cloak>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h2>Contact This User</h2>
+        <p>
+          Hey {{Name}}, Great news - there seems to be an <strong>honest</strong> person that has possible match on your lost item! At this point you will connect with the honest user. Please note that by sending this message, the user will now know your name and your email address.
+        </p>
+
+        <p>
+          At this point we request caution and good judgment on both parties. Please send them the email and make sure you ask for pictures to ensure that the honest user is in possession of your item.
+        </p>
+
+        <p>
+          Best of luck!
+        </p>
+
+        <form>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Message</label>
+            <input ng-model="message.text">
+          </md-input-container>
+        </form>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+
+      <span flex></span>
+      <md-button class='mapButton' ng-click="sendEmail()">
+       Send
+      </md-button>
+
+    </md-dialog-actions>
+  </form>
+</md-dialog>
