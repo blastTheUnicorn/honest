@@ -1,10 +1,25 @@
 angular.module('FeedController', [])
 
-.controller('FeedCtrl', function($scope, Token, $http, $mdDialog){
+.controller('FeedCtrl', function($scope, Token, $http, $mdDialog, MatchData){
 
   $scope.found = [];
   $scope.lost = [];
   $scope.match = true;
+  $scope.possibleMatch = []
+
+    $scope.getUser = function(index ,userID){
+    return $http.get('/api/'+ userID).success(function(data){
+       $scope.possibleMatch[index]._user = data
+    })
+  }
+
+  $scope.match = function(){
+    $scope.possibleMatch = MatchData.getData()
+    for (var i = 0; i < $scope.possibleMatch.length; i++) {
+      $scope.possibleMatch[i]._user = $scope.getUser( i ,$scope.possibleMatch[i]._user)
+    }
+    console.log("Testing", $scope.possibleMatch);
+  }()
 
   $scope.console = function(){
     var userID = Token.currentUser()
@@ -42,12 +57,17 @@ angular.module('FeedController', [])
     });
   };
 
-  $scope.sendEmail = function(){
-     var userID = Token.currentUser()
-    return $http.get('/api/' + userID + '/send').success(function(data){
-       console.log(data);
+  $scope.openForm = function(){
+     $mdDialog.show({
+      controller: 'EmailFormCtrl',
+      templateUrl: 'templates/emailForm/form.tmpl.html',
+      parent: angular.element(document.body),
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
     })
   }
+
+
 
 
 })

@@ -9,6 +9,7 @@ angular.module('honestApp', [
   'ColorsController',
   'MainController',
   'FeedController',
+  'EmailFormController',
   'ngAnimate'])
 
 .config( function($stateProvider, $urlRouterProvider){
@@ -137,4 +138,20 @@ angular.module('honestApp', [
   return function(items) {
     return items.slice().reverse();
   };
+})
+
+.factory('MatchData', function(){
+  var storage = {};
+   function saveMatches (data){
+    storage = data
+  }
+
+   function getData (){
+    return storage
+  }
+
+  return{
+    saveMatches : saveMatches,
+    getData : getData
+  }
 })
