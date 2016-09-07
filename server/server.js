@@ -13,8 +13,8 @@ var ObjectModel = mongoose.model('ObjectModel');
 var sendgrid  = require('sendgrid')(process.env.SENDGRID_USER, process.env.SENDGRID_PASSWORD);
  
 
- // mongoose.connect('mongodb://localhost/honest');
-mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
+ mongoose.connect('mongodb://localhost/honest');
+// mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
 //this needs to be set up with mlab 
 
 
@@ -150,7 +150,6 @@ app.get('/api/user/:user/obj', function(req, res){
   .populate('local.lost')
   .populate('local.found')
   .exec(function(err, obj){
-    console.log("Testing", obj);
     res.json(obj)
   })
 
@@ -168,26 +167,38 @@ app.get('/api/obj/:obj', function(req, res){
 
 var helper = require('sendgrid').mail
 
-app.get('/api/:user/send', function (req, res) {console.log(req.user)
-  from_email = new helper.Email("noreply@honest-app.com")
-  to_email = new helper.Email(req.user.local.email)
-  subject = "A MATCH!"
-  content = new helper.Content("text/plain", "and easy to do anywhere, even with Node.js")
-  mail = new helper.Mail(from_email, subject, to_email, content)
+app.post('/api/:user/send', function (req, res) {
+  // console.log('user',req.user)
+  console.log("body", req.body);
+  // from_email = new helper.Email("noreply@honest-app.com")
+  // to_email = new helper.Email(req.user.local.email)
+  // subject = "A MATCH!"
+  // content = new helper.Content("text/plain", "and easy to do anywhere, even with Node.js")
+  // mail = new helper.Mail(from_email, subject, to_email, content)
 
-  var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-  var request = sg.emptyRequest({
-    method: 'POST',
-    path: '/v3/mail/send',
-    body: mail.toJSON()
-  });
+  // var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+  // var request = sg.emptyRequest({
+  //   method: 'POST',
+  //   path: '/v3/mail/send',
+  //   body: mail.toJSON()
+  // });
 
-  sg.API(request, function(error, response) {
-    console.log(response.statusCode)
-    console.log(response.body)
-    console.log(response.headers)
-  })
+  // sg.API(request, function(error, response) {
+  //   console.log(response.statusCode)
+  //   console.log(response.body)
+  //   console.log(response.headers)
+  // })
 });
+
+app.get('/api/:user', function(req, res){
+    var response = {
+      name : req.user.local.name,
+      email : req.user.local.email,
+      username : req.user.local.username
+    }
+    res.json(response)
+})
+
 
 var server = app.listen(port, function(){
   console.log('WE OUT HERE LISTENING BRUH!!! PORT ' + port);

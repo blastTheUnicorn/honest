@@ -9,6 +9,7 @@ angular.module('honestApp', [
   'ColorsController',
   'MainController',
   'FeedController',
+  'EmailFormController',
   'ngAnimate'])
 
 .config( function($stateProvider, $urlRouterProvider){

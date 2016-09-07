@@ -5,6 +5,27 @@ angular.module('FeedController', [])
   $scope.found = [];
   $scope.lost = [];
   $scope.match = true;
+  $scope.possibleMatch = [{ _id: '57cf7991c532615c23db1b76',
+    comments: 'lrksgkhjkre',
+    keyWords: 'White',
+    category: 'Cellphone',
+    geo: [ -122.4020293, 37.7905236 ],
+    lostOrFound: 'lost',
+    _user: '57c873646cc93e5a2dbbf3c9',
+    __v: 0 },
+  { _id: '57d07e06172947fe291b6100',
+    comments: 'mnbhgh',
+    keyWords: 'White',
+    category: 'Cellphone',
+    geo: [ -122.40205429999999, 37.7904945 ],
+    lostOrFound: 'lost',
+    _user: '57c873646cc93e5a2dbbf3c9',
+    __v: 0 }]
+
+  $scope.showMatch = function(){
+      console.log("Testing");
+      $scope.match = false;
+  };
 
   $scope.console = function(){
     var userID = Token.currentUser()
@@ -42,10 +63,18 @@ angular.module('FeedController', [])
     });
   };
 
-  $scope.sendEmail = function(){
-     var userID = Token.currentUser()
-    return $http.get('/api/' + userID + '/send').success(function(data){
-       console.log(data);
+  $scope.openForm = function(){
+     $mdDialog.show({
+      controller: 'EmailFormCtrl',
+      templateUrl: 'templates/emailForm/form.tmpl.html',
+      parent: angular.element(document.body),
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+  }
+
+  $scope.user = function(userID){
+    return $http.get('/api/'+ userID).success(function(data){
     })
   }
 
