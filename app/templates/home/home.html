@@ -1,17 +1,40 @@
 <div id="mapView">
   <div id="mapDiv">
-      <md-progress-linear ng-if="load" mode="indeterminate" class="md-accent"></md-progress-linear>
-    <ui-gmap-google-map center='coordenates.center' zoom='coordenates.zoom' control='control' options='coordenates.options'>
-    <ui-gmap-marker ng-if='flag' coords="marker.coords" idkey=0 options='marker.options' events='marker.events'>
-        </ui-gmap-marker>
-    <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position='searchbox.position' parentdiv="searchbox.parentdiv"></ui-gmap-search-box> 
+    <md-progress-linear ng-if="load" mode="indeterminate" class="md-accent"></md-progress-linear>
+
+    <ui-gmap-google-map center='coordenates.center' zoom='coordenates.zoom' control='coordenates.control' options='coordenates.options' >
+      <ui-gmap-marker ng-if='flag' coords="marker.coords" idkey=0 options='marker.options' events='marker.events'>
+      </ui-gmap-marker>
+      <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position='searchbox.position' parentdiv="searchbox.parentdiv"></ui-gmap-search-box> 
     </ui-gmap-google-map>
-  <div id="searchBoxParent"></div>
-  </div>
-  <div class='buttonsContainer'>
-    <md-button class='mapButton' ng-click='currentLocation()'>Current location</md-button>
-    <md-button class='mapButton' ng-click='setLocation("lost")'>I lost it here</md-button>
-    <md-button class='mapButton' ng-click='setLocation("found")'>I found it here</md-button>
+
+    <div id="searchBoxParent"><md-icon md-svg-icon="images/icons/ic_navigation_black_24px.svg"></md-icon></div>
+  </div><br>
+
+  <div layout="row" class='buttonsContainer'>
+
+    <md-button class='mapButton' ng-click='currentLocation()'>
+    <md-icon md-svg-icon="images/icons/ic_my_location_black_24px.svg"></md-icon>
+    Current location
+    </md-button>
+
+    <div flex></div>
+
+    <md-button class='mapButton' ng-click='placeMarker()'>
+    <md-icon md-svg-icon="images/icons/ic_pin_drop_black_24px.svg"></md-icon>
+    Place Marker
+    </md-button>
+
+    <md-button ng-disabled="!check" class="mapButton" ng-click='setLocation("lost")'>
+    <md-icon ng-if='lost' md-svg-icon="images/icons/ic_done_black_24px.svg"></md-icon>
+    I lost it here
+    </md-button>
+
+    <md-button ng-disabled="!check" class='mapButton' ng-click='setLocation("found")'>
+    <md-icon ng-if='found' md-svg-icon="images/icons/ic_done_black_24px.svg"></md-icon>
+    I found it here
+    </md-button>
+    
   </div>
 </div>
 <md-button ui-sref="form.itemType" class="md-accent md-raised">Next Section</md-button>

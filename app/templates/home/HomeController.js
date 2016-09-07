@@ -1,11 +1,15 @@
 angular.module('HomeController', ['uiGmapgoogle-maps'])
 
-.controller('HomeCtrl', function($scope, $location, $http, Token, $mdMedia){
+.controller('HomeCtrl', function($scope, $location, $http, Token, $mdMedia, $mdDialog){
+  $scope.lost = false;
+  $scope.found = false;
   $scope.coordenates = {center: {latitude: 45, longitude: -72 }, zoom: 15 , options : {scrollwheel: false}}
   $scope.output = document.getElementById("mapView");
   $scope.options = {enableHighAccuracy: true};
   $scope.flag = false;
-  $scope.control = {};
+  $scope.check = false;
+  $scope.started = false;
+  $scope.coordenates.control = {};
   $scope.load = true;
   $scope.marker = {options: {draggable: true},
     events: {
@@ -13,8 +17,6 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
       console.log('marker dragend');
       $scope.coordenates.center.latitude = marker.getPosition().lat();
       $scope.coordenates.center.longitude = marker.getPosition().lng();
-      $scope.formData.position = [marker.getPosition().lng(), marker.getPosition().lat()]
-
     }
    }
   };
@@ -26,11 +28,10 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
     events:{
       places_changed: function (searchBox) {
         $scope.flag = false;
-        $scope.formData.position = {}
         var places =searchBox.getPlaces()
         $scope.coordenates.center.latitude = places[0].geometry.location.lat()
         $scope.coordenates.center.longitude = places[0].geometry.location.lng()
-        $scope.control.refresh($scope.coordenates.center)
+        $scope.coordenates.control.refresh($scope.coordenates.center)
       }
     }
   };
@@ -44,11 +45,10 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
     }
     navigator.geolocation.getCurrentPosition(function(pos) {
       $scope.flag = false;
-      $scope.formData = {}
       $scope.coordenates.center.latitude = pos.coords.latitude;
       $scope.coordenates.center.longitude = pos.coords.longitude;
       $scope.load = false;
-      $scope.control.refresh($scope.coordenates.center)
+      $scope.coordenates.control.refresh($scope.coordenates.center)
     }, 
     function(error) {                    
         alert('Unable to get location: ' + error.message);
@@ -57,15 +57,37 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
   $scope.currentLocation();
 
   $scope.placeMarker = function(){
+    $scope.check = !$scope.check
     $scope.flag = !$scope.flag
     $scope.marker.coords = $scope.coordenates.center;
   };
 
   $scope.setLocation = function(LostOrFound){
-    $scope.placeMarker()
-    console.log("Testing",  $scope.formData);
+  if(LostOrFound === 'lost'){
+    $scope.lost = true;
+  } else {
+    $scope.found = true;
+  }   
     $scope.formData.lostOrFound = LostOrFound;
     $scope.formData.position = [$scope.coordenates.center.longitude, $scope.coordenates.center.latitude]
   };
+
+  $scope.instructions = function(){
+
+    if(!document.cookie){
+      alert = $mdDialog.alert({
+        title: 'Attention',
+        textContent: 'This is an example of how easy dialogs can be!',
+        ok: 'Close'
+      })
+
+      $mdDialog
+      .show(alert)
+      .finally(function() {
+        alert = undefined;
+      });
+      document.cookie = 'instructions'
+    }
+  }();
 
 });

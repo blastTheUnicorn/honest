@@ -1,6 +1,6 @@
 angular.module('FeedController', [])
 
-.controller('FeedCtrl', function($scope, Token, $http){
+.controller('FeedCtrl', function($scope, Token, $http, $mdDialog){
 
   $scope.found = [];
   $scope.lost = [];
@@ -11,13 +11,35 @@ angular.module('FeedController', [])
     return $http.get('/api/user/' + userID + '/obj').success(function(data){
        $scope.lost = data.local.lost;
        $scope.found = data.local.found;
-       console.log("Testing", $scope.found);
     })
   }();
 
-  $scope.resolve = function(){
-    console.log("call resolve function");
-    //function that will delete(or move) the lost/found object
+  $scope.resolve = function(item){
+
+    var confirm = $mdDialog.confirm()
+    .title('once resolved you are not going to be able to see this item')
+    .textContent('Are you sure?')
+    .ok('Yes, Resolve')
+    .cancel('No');
+
+    $mdDialog.show(confirm).then(function() {
+      $scope.status = 'Yes';
+        if(item.lostOrFound === 'lost'){
+          var i = $scope.lost.indexOf(item)
+          $scope.lost.splice(i, 1)
+        }else{
+          var i = $scope.found.indexOf(item)
+          $scope.found.splice(i, 1)
+        }
+        return $http.get('/api/obj/'+ item._id).success(function(data){
+          console.log(data)
+        }).error(function(err){
+          console.log(err);
+        })
+    }, function() {
+      $scope.status = 'No';
+
+    });
   };
 
 

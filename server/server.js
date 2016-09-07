@@ -12,8 +12,8 @@ var ObjectModel = mongoose.model('ObjectModel');
 
  
 
- mongoose.connect('mongodb://localhost/honest');
-// mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
+ // mongoose.connect('mongodb://localhost/honest');
+mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
 //this needs to be set up with mlab 
 
 var db = mongoose.connection;
@@ -149,6 +149,15 @@ app.get('/api/user/:user/obj', function(req, res){
     res.json(obj)
   })
 
+});
+
+app.get('/api/obj/:obj', function(req, res){
+  ObjectModel
+    .findOne({_id : req.params.obj})
+    .remove()
+    .exec(function(err, obj){
+      res.json(obj)
+     })
 });
 
 var server = app.listen(port, function(){
