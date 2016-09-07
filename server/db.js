@@ -1,3 +1,4 @@
+var db = require('mongodb')
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 var bcrypt = require('bcrypt-nodejs');
@@ -7,7 +8,7 @@ var jwt = require('jsonwebtoken');
   var ObjectSchema = new mongoose.Schema({
     _user : {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     lostOrFound: String,
-    loc: {
+    geo: {
       type: [Number],  // [<longitude>, <latitude>]
       index: '2d'      // create the geospatial index
     },
@@ -15,7 +16,7 @@ var jwt = require('jsonwebtoken');
     keyWords : String,
     comments : String
   });
-  
+
 
   var UserSchema = new mongoose.Schema({
     local : {
@@ -67,7 +68,7 @@ UserSchema.methods.generateJWT = function(){
 };
 UserSchema.plugin(uniqueValidator, { message: 'Error, expected {PATH} to be unique.' })
 
-var User = mongoose.model('User',UserSchema);
+var User = mongoose.model('User', UserSchema);
 
 var ObjectModel = mongoose.model('ObjectModel', ObjectSchema);
 

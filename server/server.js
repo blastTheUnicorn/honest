@@ -5,12 +5,12 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var app = express();
-var db = require('./db.js');
+var database = require('./db.js');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var ObjectModel = mongoose.model('ObjectModel');
 
-
+ 
 
  mongoose.connect('mongodb://localhost/honest');
 // mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
@@ -18,18 +18,27 @@ var ObjectModel = mongoose.model('ObjectModel');
 
 var db = mongoose.connection;
 
+  // User.find({}, function(err, users) {
+  //   var userMap = {};
+
+  //   users.forEach(function(user) {
+  //     userMap[user._id] = user;
+  //   });
+
+  //   res.send(userMap);  
+  // });
+
+
 db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function(){
   console.log("db connected!");
-
 });
 
 var app = express();
 var routes = require('./routes.js');
 app.use('/routes', routes);
 require('../config/passport')(passport);
-
 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
@@ -41,10 +50,6 @@ app.use(express.static(__dirname + '/../app'));
 var port = process.env.PORT || 3000;
 app.set('port', port);
 
-app.get('/test', function(req, res){
-  res.statusCode = 200;
-  res.send(new Buffer('Hello World!'));
-});
 
 app.param('user', function(req, res, next, id){
   var query = User.findById(id);
@@ -71,6 +76,9 @@ if(!req.body.username || !req.body.password){
       return res.status(401).json(info);
     }
   })(req, res, next);
+
+
+
 })
 
 app.post('/api/signUp', function(req, res, next){
@@ -88,14 +96,16 @@ app.post('/api/signUp', function(req, res, next){
  })
 });
 
+
 app.post('/api/user/:user', function(req, res, next){
   var object = new ObjectModel();
   object._user = req.user._id
   object.lostOrFound = req.body.lostOrFound;
-  object.loc = req.body.position;
+  object.geo = req.body.position;
   object.category = req.body.type.name;
   object.keyWords = req.body.colors;
   object.comments = req.body.description;
+  object.point = {"point":"2dsphere"}
   object.save(function(err, obj){
     if(err){return next(err)}
     if(req.body.lostOrFound === 'lost'){
@@ -108,7 +118,26 @@ app.post('/api/user/:user', function(req, res, next){
     res.json(obj)
     })
   })
+
+  ObjectModel.find({geo: { $nearSphere: object.geo, $maxDistance: 1} }, function(err, docs){
+    if (!err){
+      console.log(object.geo)
+          console.log('$$$$$$$$$$$$$$$$$', docs.filter(function(element){
+            if (element.lostOrFound === 'found' && object.lostOrFound === 'lost') {
+
+              return element
+            }
+            else if (object.lostOrFound === 'found' && element.lostOrFound === 'lost') {
+
+              return element
+            }
+          }));
+      } else {throw err;}
+  })
+
 });
+
+
 
 app.get('/api/user/:user/obj', function(req, res){
   User
@@ -118,7 +147,6 @@ app.get('/api/user/:user/obj', function(req, res){
   .exec(function(err, obj){
     console.log("Testing", obj);
     res.json(obj)
-
   })
 
 });
