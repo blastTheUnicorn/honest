@@ -105,7 +105,7 @@ app.post('/api/user/:user', function(req, res, next){
   object._user = req.user._id
   object.lostOrFound = req.body.lostOrFound;
   object.geo = req.body.position;
-  object.category = req.body.type.name;
+  object.category = req.body.type;
   object.keyWords = req.body.colors;
   object.comments = req.body.description;
   object.point = {"point":"2dsphere"}
