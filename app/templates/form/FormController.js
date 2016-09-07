@@ -4,6 +4,15 @@ angular.module('FormController', [])
   // store all form data in this object
   $scope.formData = {};
 
+  $scope.sendEmail = function () {
+    var userID = Token.currentUser()
+    console.log('triggered')
+    $http.get('/api/' + userID + '/send').success(function(){
+        console.log('sent!')
+        $scope.emailSent = "Sent babay!";
+    });
+
+  }
   // function to process our form
   $scope.processForm = function () {
     if(!$scope.formData.lostOrFound || !$scope.formData.position){
@@ -24,6 +33,7 @@ angular.module('FormController', [])
       var userID = Token.currentUser()
       return $http.post('/api/user/' + userID, $scope.formData)
       .success(function(data){
+
         $scope.formData = {};
         $mdToast.show(
           $mdToast.simple()
@@ -49,5 +59,7 @@ angular.module('FormController', [])
       })
     }
   };
+
+
 
 });

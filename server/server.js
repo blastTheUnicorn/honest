@@ -10,13 +10,16 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var ObjectModel = mongoose.model('ObjectModel');
 
+var sendgrid  = require('sendgrid')(process.env.SENDGRID_USER, process.env.SENDGRID_PASSWORD);
  
 
  // mongoose.connect('mongodb://localhost/honest');
 mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
 //this needs to be set up with mlab 
 
+
 var db = mongoose.connection;
+
 
   // User.find({}, function(err, users) {
   //   var userMap = {};
@@ -158,6 +161,30 @@ app.get('/api/obj/:obj', function(req, res){
     .exec(function(err, obj){
       res.json(obj)
      })
+});
+
+
+var helper = require('sendgrid').mail
+
+app.get('/api/:user/send', function (req, res) {console.log(req.user)
+  from_email = new helper.Email("noreply@honest-app.com")
+  to_email = new helper.Email(req.user.local.email)
+  subject = "A MATCH!"
+  content = new helper.Content("text/plain", "and easy to do anywhere, even with Node.js")
+  mail = new helper.Mail(from_email, subject, to_email, content)
+
+  var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+  var request = sg.emptyRequest({
+    method: 'POST',
+    path: '/v3/mail/send',
+    body: mail.toJSON()
+  });
+
+  sg.API(request, function(error, response) {
+    console.log(response.statusCode)
+    console.log(response.body)
+    console.log(response.headers)
+  })
 });
 
 var server = app.listen(port, function(){
