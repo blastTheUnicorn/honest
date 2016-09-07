@@ -1,6 +1,6 @@
 angular.module('FormController', [])
-.controller('FormCtrl', function($scope, $http, Token, $location, $mdToast){
-  
+.controller('FormCtrl', function($scope, $http, MatchData, Token, $location, $mdToast){
+  console.log("Testing", MatchData);
   // store all form data in this object
   $scope.formData = {};
 
@@ -33,7 +33,7 @@ angular.module('FormController', [])
       var userID = Token.currentUser()
       return $http.post('/api/user/' + userID, $scope.formData)
       .success(function(data){
-
+        MatchData.saveMatches(data)
         $scope.formData = {};
         $mdToast.show(
           $mdToast.simple()
@@ -62,4 +62,4 @@ angular.module('FormController', [])
 
 
 
-});
+})

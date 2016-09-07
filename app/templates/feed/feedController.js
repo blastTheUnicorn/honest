@@ -1,31 +1,25 @@
 angular.module('FeedController', [])
 
-.controller('FeedCtrl', function($scope, Token, $http, $mdDialog){
+.controller('FeedCtrl', function($scope, Token, $http, $mdDialog, MatchData){
 
   $scope.found = [];
   $scope.lost = [];
   $scope.match = true;
-  $scope.possibleMatch = [{ _id: '57cf7991c532615c23db1b76',
-    comments: 'lrksgkhjkre',
-    keyWords: 'White',
-    category: 'Cellphone',
-    geo: [ -122.4020293, 37.7905236 ],
-    lostOrFound: 'lost',
-    _user: '57c873646cc93e5a2dbbf3c9',
-    __v: 0 },
-  { _id: '57d07e06172947fe291b6100',
-    comments: 'mnbhgh',
-    keyWords: 'White',
-    category: 'Cellphone',
-    geo: [ -122.40205429999999, 37.7904945 ],
-    lostOrFound: 'lost',
-    _user: '57c873646cc93e5a2dbbf3c9',
-    __v: 0 }]
+  $scope.possibleMatch = []
 
-  $scope.showMatch = function(){
-      console.log("Testing");
-      $scope.match = false;
-  };
+    $scope.getUser = function(index ,userID){
+    return $http.get('/api/'+ userID).success(function(data){
+       $scope.possibleMatch[index]._user = data
+    })
+  }
+
+  $scope.match = function(){
+    $scope.possibleMatch = MatchData.getData()
+    for (var i = 0; i < $scope.possibleMatch.length; i++) {
+      $scope.possibleMatch[i]._user = $scope.getUser( i ,$scope.possibleMatch[i]._user)
+    }
+    console.log("Testing", $scope.possibleMatch);
+  }()
 
   $scope.console = function(){
     var userID = Token.currentUser()
@@ -73,10 +67,7 @@ angular.module('FeedController', [])
     })
   }
 
-  $scope.user = function(userID){
-    return $http.get('/api/'+ userID).success(function(data){
-    })
-  }
+
 
 
 })

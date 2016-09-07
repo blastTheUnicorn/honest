@@ -139,3 +139,19 @@ angular.module('honestApp', [
     return items.slice().reverse();
   };
 })
+
+.factory('MatchData', function(){
+  var storage = {};
+   function saveMatches (data){
+    storage = data
+  }
+
+   function getData (){
+    return storage
+  }
+
+  return{
+    saveMatches : saveMatches,
+    getData : getData
+  }
+})

@@ -118,28 +118,22 @@ app.post('/api/user/:user', function(req, res, next){
     }
     req.user.save(function(err, obj){
     if(err){return next(err)}
-    res.json(obj)
     })
   })
 
-  ObjectModel.find({geo: { $nearSphere: object.geo, $maxDistance: 0.01} }, function(err, docs){
+   ObjectModel.find({geo: { $nearSphere: object.geo, $maxDistance: 1} }, function(err, docs){
     if (!err){
-      console.log(object.geo)
-          console.log('$$$$$$$$$$$$$$$$$', docs.filter(function(element){
-            if (element.lostOrFound === 'found' && object.lostOrFound === 'lost') {
-              if (object.category === element.category){
-                return element
-              }
-            }
-            else if (object.lostOrFound === 'found' && element.lostOrFound === 'lost') {
-              if (object.category === element.category){
-                return element
-              }
-            }
-          }));
+      var element = docs.filter(function(element){
+        if (element.lostOrFound === 'found' && object.lostOrFound === 'lost') {
+          return element
+        }
+        else if (object.lostOrFound === 'found' && element.lostOrFound === 'lost') {
+          return element
+        }
+      });
       } else {throw err;}
+       res.json(element)
   })
-
 });
 
 
