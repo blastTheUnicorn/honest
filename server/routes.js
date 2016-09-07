@@ -23,6 +23,6 @@ if(!req.body.username || !req.body.password){
       return res.status(401).json(info);
     }
   })(req, res, next);
-})
+});
 
 module.exports = router;
