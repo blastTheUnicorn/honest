@@ -13,8 +13,8 @@ var ObjectModel = mongoose.model('ObjectModel');
 var sendgrid  = require('sendgrid')(process.env.SENDGRID_USER, process.env.SENDGRID_PASSWORD);
  
 
- // mongoose.connect('mongodb://localhost/honest');
-mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
+  mongoose.connect('mongodb://localhost/honest');
+// mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
 //this needs to be set up with mlab 
 
 
@@ -39,8 +39,7 @@ db.once('open', function(){
 });
 
 var app = express();
-var routes = require('./routes.js');
-app.use('/routes', routes);
+
 require('../config/passport')(passport);
 
 app.use(passport.initialize());
