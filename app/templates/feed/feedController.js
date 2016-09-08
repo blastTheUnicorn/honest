@@ -57,7 +57,8 @@ angular.module('FeedController', [])
     });
   };
 
-  $scope.openForm = function(){
+  $scope.openForm = function(MatchUser){
+    MatchData.saveUser(MatchUser);
      $mdDialog.show({
       controller: 'EmailFormCtrl',
       templateUrl: 'templates/emailForm/form.tmpl.html',

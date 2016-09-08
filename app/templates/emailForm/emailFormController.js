@@ -1,9 +1,10 @@
 angular.module('EmailFormController', [])
 
-.controller('EmailFormCtrl', function($scope, Token, $mdDialog, $http){
+.controller('EmailFormCtrl', function($scope, Token, $mdDialog, $http, MatchData){
   $scope.message = {}
 
   $scope.sendEmail = function(){
+    $scope.message.user = MatchData.getUser()
     console.log("Testing", $scope.message.text);
      var userID = Token.currentUser()
     return $http({

@@ -142,6 +142,7 @@ angular.module('honestApp', [
 
 .factory('MatchData', function(){
   var storage = {};
+  var MatchUser = {};
    function saveMatches (data){
     storage = data
   }
@@ -150,8 +151,18 @@ angular.module('honestApp', [
     return storage
   }
 
+  function saveUser (user){
+    MatchUser = user
+  }
+
+  function getUser (){
+    return MatchUser
+  }
+
   return{
     saveMatches : saveMatches,
-    getData : getData
+    getData : getData,
+    saveUser : saveUser,
+    getUser : getUser
   }
 })
