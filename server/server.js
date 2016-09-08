@@ -13,7 +13,7 @@ var ObjectModel = mongoose.model('ObjectModel');
 var sendgrid  = require('sendgrid')(process.env.SENDGRID_USER, process.env.SENDGRID_PASSWORD);
  
 
-  // mongoose.connect('mongodb://localhost/honest');
+ // mongoose.connect('mongodb://localhost/honest');
 mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
 //this needs to be set up with mlab 
 
