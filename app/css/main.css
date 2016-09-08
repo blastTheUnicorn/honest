@@ -226,6 +226,7 @@ md-input-container{
   text-align:center;
   text-transform:uppercase;
   font-size: 17px;
+  min-width: 153px;
 }
 #status-buttons a:hover { 
   text-decoration:none; 
