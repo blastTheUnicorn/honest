@@ -1,4 +1,5 @@
 angular.module('SingUpController', [])
+
 .controller('SignUpCtrl', function($scope, $location, $http, Token, $mdToast){
   $scope.user = {};
 
