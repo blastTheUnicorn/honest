@@ -2,6 +2,8 @@
 
 > Losing valuable objects suck! Be it your purse, wallet, dog, or perhaps even a loved one. Honest gives you and your community the opportunity to be a good Samaritan. Post a picture and info on the lost item/person. The people in your community and beyond have the chance to find it and return it.
 
+![Alt text](http://image-store.slidesharecdn.com/27ce029f-daab-41a2-b60e-ede426b6af8d-large.png "Honest's Intake Form")
+
 ## Team
 
   - __Product Owner__: Atlante Avila  
