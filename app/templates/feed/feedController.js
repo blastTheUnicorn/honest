@@ -1,11 +1,26 @@
 angular.module('FeedController', [])
 
-.controller('FeedCtrl', function($scope, Token, $http, $mdDialog, MatchData){
+.controller('FeedCtrl', function($scope, Token, $http, $mdDialog, MatchData, $timeout){
 
   $scope.found = [];
   $scope.lost = [];
   $scope.match = true;
   $scope.possibleMatch = []
+  $scope.lastElement
+
+  $scope.console = function(){
+    var userID = Token.currentUser()
+    return $http.get('/api/user/' + userID + '/obj').success(function(data){
+       $scope.lost = data.local.lost;
+       $scope.found = data.local.found;
+
+       if(data.local.lost.length > 0){
+          $scope.lastElement = data.local.lost[0]
+       }else{
+          $scope.lastElement = data.local.found[0]
+       }
+    })
+  }();
 
     $scope.getUser = function(index ,userID){
     return $http.get('/api/'+ userID).success(function(data){
@@ -14,20 +29,18 @@ angular.module('FeedController', [])
   }
 
   $scope.match = function(){
-    $scope.possibleMatch = MatchData.getData()
-    for (var i = 0; i < $scope.possibleMatch.length; i++) {
+        return $http.post('/api/match', $scope.lastElement).success(function(data){
+          $scope.possibleMatch = data
+          for (var i = 0; i < $scope.possibleMatch.length; i++) {
       $scope.possibleMatch[i]._user = $scope.getUser( i ,$scope.possibleMatch[i]._user)
     }
-    console.log("Testing", $scope.possibleMatch);
-  }()
+    $scope.match = false
+        }).error(function(err){
+          console.log(err);
+        })
+  }
 
-  $scope.console = function(){
-    var userID = Token.currentUser()
-    return $http.get('/api/user/' + userID + '/obj').success(function(data){
-       $scope.lost = data.local.lost;
-       $scope.found = data.local.found;
-    })
-  }();
+  $timeout($scope.match, 2000)
 
   $scope.resolve = function(item){
 
