@@ -12,8 +12,8 @@ angular.module('EmailFormController', [])
       contentType: 'application/json',
       data: $scope.message
     }).then(function successCallback(res){
-      $mdDialog.hide()
       return res;
     })
+    $mdDialog.hide()
   }
 });

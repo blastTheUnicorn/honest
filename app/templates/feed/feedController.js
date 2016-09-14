@@ -4,6 +4,7 @@ angular.module('FeedController', [])
   $scope.found = [];
   $scope.lost = [];
   $scope.match = true;
+  $scope.noMatch = true;
   $scope.possibleMatch = [];
   $scope.lastElement;
 
@@ -28,17 +29,23 @@ angular.module('FeedController', [])
   };
 
   $scope.match = function(){
-    return $http.post('/api/match', $scope.lastElement)
-    .success(function(data){
-      $scope.possibleMatch = data;
-      for (var i = 0; i < $scope.possibleMatch.length; i++) {
-        $scope.possibleMatch[i]._user = $scope.getUser( i ,$scope.possibleMatch[i]._user);
-      }
+    if($scope.lastElement){
+      return $http.post('/api/match', $scope.lastElement)
+      .success(function(data){
+        $scope.possibleMatch = data;
+        for (var i = 0; i < $scope.possibleMatch.length; i++) {
+          $scope.possibleMatch[i]._user = $scope.getUser( i ,$scope.possibleMatch[i]._user);
+        }
+        $scope.match = false;
+      })
+      .error(function(err){
+        console.log(err);
+      })
+    }else{
+      console.log('No elements')
       $scope.match = false;
-    })
-    .error(function(err){
-      console.log(err);
-    })
+      $scope.noMatch = false;
+    }
   };
 
   $timeout($scope.match, 2000)

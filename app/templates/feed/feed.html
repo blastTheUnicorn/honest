@@ -2,6 +2,7 @@
   <div layout="column">
     <h2 class='feedTitles'>Possible Match</h2>
     <md-progress-linear ng-if='match' class="md-accent md-hue-2" md-diameter="40"></md-progress-linear>
+    <div ng-if="!noMatch">No Matches Yet!</div>
     <div>
       <md-card ng-repeat='item in possibleMatch'>
         <md-card-title layout="row">
@@ -23,18 +24,12 @@
               </md-card-title>
               <md-card-actions layout="row" layout-align="end center">
                 <md-button class="mapButton md-accent md-hue-2" ng-click='openForm(item._user)' >
-                  contact this person
+                  Contact This Person
                 </md-button>
               </md-card-actions>
             </md-card>
           </div>
         </md-card-title>
-
-        <md-card-actions layout="row" >
-          <md-button class="md-accent md-raised" ng-click='resolve()' >
-            Resolve
-          </md-button>
-        </md-card-actions>
       </md-card>
     </div>
     <br>

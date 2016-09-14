@@ -91,6 +91,6 @@ angular.module('HomeController', ['uiGmapgoogle-maps'])
       });
       document.cookie = 'instructions'
     }
-  }();
+  };
   
 });
