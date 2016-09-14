@@ -159,26 +159,27 @@ app.get('/api/obj/:obj', function(req, res){
 
 
 app.post('/api/:user/send', function (req, res) {
-// console.log('user',req.user)
+console.log('user',req.user.local.name, req.user.local.email )
 console.log("body", req.body);
-// from_email = new helper.Email("noreply@honest-app.com")
-// to_email = new helper.Email(req.user.local.email)
-// subject = "A MATCH!"
-// content = new helper.Content("text/plain", "and easy to do anywhere, even with Node.js")
-// mail = new helper.Mail(from_email, subject, to_email, content)
 
-// var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-// var request = sg.emptyRequest({
-//   method: 'POST',
-//   path: '/v3/mail/send',
-//   body: mail.toJSON()
-// });
+from_email = new helper.Email("noreply@honest-app.com")
+to_email = new helper.Email(req.body.user.email)
+subject = "A MATCH!"
+content = new helper.Content("text/plain", "Hey, Great news - there seems to be an *Honest* user that wants to get in contact with you! At this point you will talk directly with each other. this is the *Honest* user contact info: *Name*: " +req.user.local.name+ " *Email*: "+ req.user.local.email + " This user also attached a message:  " +req.body.text+ " Best of luck!")
+mail = new helper.Mail(from_email, subject, to_email, content)
 
-// sg.API(request, function(error, response) {
-//   console.log(response.statusCode)
-//   console.log(response.body)
-//   console.log(response.headers)
-// })
+var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+var request = sg.emptyRequest({
+  method: 'POST',
+  path: '/v3/mail/send',
+  body: mail.toJSON()
+});
+
+sg.API(request, function(error, response) {
+  console.log(response.statusCode)
+  console.log(response.body)
+  console.log(response.headers)
+})
 });
 
 app.get('/api/:user', function(req, res){
