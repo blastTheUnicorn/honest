@@ -9,27 +9,16 @@ var database = require('./db.js');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var ObjectModel = mongoose.model('ObjectModel');
-
 var sendgrid  = require('sendgrid')(process.env.SENDGRID_USER, process.env.SENDGRID_PASSWORD);
- 
+var helper = require('sendgrid').mail
 
- mongoose.connect('mongodb://localhost/honest');
+
+
+mongoose.connect('mongodb://localhost/honest');
 // mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
-//this needs to be set up with mlab 
 
 
 var db = mongoose.connection;
-
-
-  // User.find({}, function(err, users) {
-  //   var userMap = {};
-
-  //   users.forEach(function(user) {
-  //     userMap[user._id] = user;
-  //   });
-
-  //   res.send(userMap);  
-  // });
 
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -43,7 +32,7 @@ var app = express();
 require('../config/passport')(passport);
 
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/../app'));
@@ -65,37 +54,38 @@ app.param('user', function(req, res, next, id){
   });
 });
 
+
 app.post('/api/login', function(req, res, next){
-if(!req.body.username || !req.body.password){
-    return res.status(400).json({message: 'Please fill out all fields'});
+  if(!req.body.username || !req.body.password){
+    return res.status(400).json({ message: 'Please fill out all fields' });
   }
+
   passport.authenticate('local', function(err, user, info){
-    if(err){return next(err);}
+    if(err){ return next(err); }
 
     if(user){
-      return res.json({token: user.generateJWT()});
+      return res.json({ token: user.generateJWT() });
     } else {
       return res.status(401).json(info);
     }
   })(req, res, next);
+});
 
-
-
-})
 
 app.post('/api/signUp', function(req, res, next){
   if(!req.body.username || !req.body.password || !req.body.name || !req.body.email){
-    return res.status(400).json({message: 'Please fill out all fields'});
- };
- var user = new User();
- user.local.name = req.body.name;
- user.local.email = req.body.email;
- user.local.username = req.body.username;
- user.local.password = user.generateHash(req.body.password);
- user.save(function(err){
-  if(err){return next(err);}
-  res.json({token: user.generateJWT()})
- })
+    return res.status(400).json({ message: 'Please fill out all fields' });
+  };
+
+  var user = new User();
+  user.local.name = req.body.name;
+  user.local.email = req.body.email;
+  user.local.username = req.body.username;
+  user.local.password = user.generateHash(req.body.password);
+  user.save(function(err){
+    if(err){ return next(err); }
+    res.json({ token: user.generateJWT() })
+  })
 });
 
 
@@ -107,25 +97,26 @@ app.post('/api/user/:user', function(req, res, next){
   object.category = req.body.type;
   object.keyWords = req.body.colors;
   object.comments = req.body.description;
-  object.point = {"point":"2dsphere"}
+  object.point = {"point":"2dsphere"};
+
   object.save(function(err, obj){
-    if(err){return next(err)}
+    if(err){ return next(err); }
     if(req.body.lostOrFound === 'lost'){
-    req.user.local.lost.push(obj)
+      req.user.local.lost.push(obj);
     }else{
-    req.user.local.found.push(obj)
+      req.user.local.found.push(obj);
     }
     req.user.save(function(err, obj){
-    if(err){return next(err)}
+      if(err){ return next(err); }
     })
   })
-
 });
 
-app.post('/api/match', function(req, res){
-   var object = req.body;
 
-   ObjectModel.find({geo: { $nearSphere: object.geo, $maxDistance: 1} }, function(err, docs){
+app.post('/api/match', function(req, res){
+  var object = req.body;
+
+  ObjectModel.find({geo: { $nearSphere: object.geo, $maxDistance: 0.03} }, function(err, docs){
     if (!err){
       var element = docs.filter(function(element){
         if (element.lostOrFound === 'found' && object.lostOrFound === 'lost') {
@@ -135,10 +126,12 @@ app.post('/api/match', function(req, res){
           return element
         }
       });
-      } else {throw err;}
-       res.json(element)
+    } else { throw err; }
+
+    res.json(element)
   })
 });
+
 
 app.get('/api/user/:user/obj', function(req, res){
   User
@@ -148,54 +141,52 @@ app.get('/api/user/:user/obj', function(req, res){
   .exec(function(err, obj){
     res.json(obj)
   })
-
 });
+
 
 app.get('/api/obj/:obj', function(req, res){
   ObjectModel
-    .findOne({_id : req.params.obj})
-    .remove()
-    .exec(function(err, obj){
-      res.json(obj)
-     })
+  .findOne({_id : req.params.obj})
+  .remove()
+  .exec(function(err, obj){
+    res.json(obj)
+  })
 });
 
 
-var helper = require('sendgrid').mail
-
 app.post('/api/:user/send', function (req, res) {
-  // console.log('user',req.user)
-  console.log("body", req.body);
-  // from_email = new helper.Email("noreply@honest-app.com")
-  // to_email = new helper.Email(req.user.local.email)
-  // subject = "A MATCH!"
-  // content = new helper.Content("text/plain", "and easy to do anywhere, even with Node.js")
-  // mail = new helper.Mail(from_email, subject, to_email, content)
+// console.log('user',req.user)
+console.log("body", req.body);
+// from_email = new helper.Email("noreply@honest-app.com")
+// to_email = new helper.Email(req.user.local.email)
+// subject = "A MATCH!"
+// content = new helper.Content("text/plain", "and easy to do anywhere, even with Node.js")
+// mail = new helper.Mail(from_email, subject, to_email, content)
 
-  // var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-  // var request = sg.emptyRequest({
-  //   method: 'POST',
-  //   path: '/v3/mail/send',
-  //   body: mail.toJSON()
-  // });
+// var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+// var request = sg.emptyRequest({
+//   method: 'POST',
+//   path: '/v3/mail/send',
+//   body: mail.toJSON()
+// });
 
-  // sg.API(request, function(error, response) {
-  //   console.log(response.statusCode)
-  //   console.log(response.body)
-  //   console.log(response.headers)
-  // })
+// sg.API(request, function(error, response) {
+//   console.log(response.statusCode)
+//   console.log(response.body)
+//   console.log(response.headers)
+// })
 });
 
 app.get('/api/:user', function(req, res){
-    var response = {
-      name : req.user.local.name,
-      email : req.user.local.email,
-      username : req.user.local.username
-    }
-    res.json(response)
+  var response = {
+    name : req.user.local.name,
+    email : req.user.local.email,
+    username : req.user.local.username
+  }
+  res.json(response)
 })
 
 
 var server = app.listen(port, function(){
-  console.log('WE OUT HERE LISTENING BRUH!!! PORT ' + port);
+console.log('WE OUT HERE LISTENING BRUH!!! PORT ' + port);
 });
