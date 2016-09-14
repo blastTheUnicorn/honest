@@ -14,6 +14,7 @@ angular.module('honestApp', [
 
 .config( function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/login')
+
   $stateProvider
   .state('login', {
     url: '/login',
@@ -27,8 +28,8 @@ angular.module('honestApp', [
       }
     }
   })
-  
-  // Begin the lost and found form here.
+
+  // Beginning lost and found form here.
   .state('form', {
     url: '/form',
     views: {
@@ -42,22 +43,29 @@ angular.module('honestApp', [
       }
     }
   })
+
+
   .state('form.location', {
     url: '/location',
     templateUrl: '../templates/home/home.html',
     controller: 'HomeCtrl'
+  })
 
-  })
+
   .state('form.itemType', {
-      url: '/item-type',
-      templateUrl: '../templates/form/form-type.html',
-      controller: 'LostFoundCtrl'
+    url: '/item-type',
+    templateUrl: '../templates/form/form-type.html',
+    controller: 'LostFoundCtrl'
   })
+
+
   .state('form.colors', {
     url: '/colors',
     templateUrl: '../templates/form/form-colors.html',
     controller: 'ColorsCtrl'
   })
+
+
   .state('form.description', {
     url: '/description',
     templateUrl: '../templates/form/form-description.html'
@@ -76,22 +84,23 @@ angular.module('honestApp', [
       }
     }
   })
+
+
   .state('feed', {
     url: '/feed',
     views: {
       header: {
         templateUrl: '../templates/headers/main-header.html',
         controller: 'MainCtrl'
-        
-        
       },
       container: {
         templateUrl: '../templates/feed/feed.html',
         controller: 'FeedCtrl'
       }
     }
-  });
+  })
 })
+
 
 .factory('Token', function($window, $location){
 
@@ -125,13 +134,15 @@ angular.module('honestApp', [
       return payload._id;
     }
   };
+
+
   return{
     saveToken : saveToken,
     getToken : getToken,
     isLoggedIn : isLoggedIn,
     logOut : logOut,
     currentUser : currentUser
-  }
+  };
 })
 
 .filter('reverse', function() {
@@ -143,11 +154,11 @@ angular.module('honestApp', [
 .factory('MatchData', function(){
   var storage = {};
   var MatchUser = {};
-   function saveMatches (data){
-    storage = data
+  function saveMatches (data){
+    storage = data;
   }
 
-   function getData (){
+  function getData (){
     return storage
   }
 
