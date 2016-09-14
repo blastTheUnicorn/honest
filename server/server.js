@@ -120,10 +120,14 @@ app.post('/api/match', function(req, res){
     if (!err){
       var element = docs.filter(function(element){
         if (element.lostOrFound === 'found' && object.lostOrFound === 'lost') {
-          return element
+          if(element.category === object.category){
+            return element;
+          }
         }
         else if (object.lostOrFound === 'found' && element.lostOrFound === 'lost') {
-          return element
+          if(element.category === object.category){
+            return element;
+          }
         }
       });
     } else { throw err; }
