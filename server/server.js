@@ -108,6 +108,7 @@ app.post('/api/user/:user', function(req, res, next){
     }
     req.user.save(function(err, obj){
       if(err){ return next(err); }
+      res.json(obj)
     })
   })
 });

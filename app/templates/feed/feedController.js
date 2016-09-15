@@ -8,7 +8,7 @@ angular.module('FeedController', [])
   $scope.possibleMatch = [];
   $scope.lastElement;
 
-  $scope.console = function(){
+  $scope.findLostAndFoundItems = function(){
     var userID = Token.currentUser()
     return $http.get('/api/user/' + userID + '/obj').success(function(data){
       $scope.lost = data.local.lost;

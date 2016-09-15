@@ -30,8 +30,8 @@ angular.module('FormController', [])
       var userID = Token.currentUser()
       return $http.post('/api/user/' + userID, $scope.formData)
       .success(function(data){
-        MatchData.saveMatches(data)
         $scope.formData = {};
+        console.log($scope.formData)
         $mdToast.show(
           $mdToast.simple()
           .textContent('Item has been saved')
