@@ -14,8 +14,8 @@ var helper = require('sendgrid').mail
 
 
 
-mongoose.connect('mongodb://localhost/honest');
-// mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
+// mongoose.connect('mongodb://localhost/honest');
+mongoose.connect('mongodb://honest:ornitorrinco@ds017246.mlab.com:17246/heroku_qmsldprb');
 
 
 var db = mongoose.connection;
