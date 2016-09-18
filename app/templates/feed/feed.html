@@ -1,67 +1,68 @@
 <md-content>
-<div layout="column">
-  <h2 class='feedTitles'>Possible Match</h2>
-  <md-progress-linear ng-if='match' class="md-accent md-hue-2" md-diameter="40"></md-progress-linear>
-  <div>
-    <md-card ng-repeat='item in possibleMatch'>
-      <md-card-title layout="row">
-        <md-card-title-text layout="column">
-          <span class="md-display-1"> Possible Match </span>
-          <span class="md-display-1"> {{ item.lostOrFound.toUpperCase() }} </span>
-          <span class="md-headline"> {{ item.category }} </span>
-          <span class="md-title"> {{ item.keyWords }} </span>
-          <span class="md-subhead"> {{ item.comments }} </span>
-        </md-card-title-text>
+  <div layout="column">
+    <h2 class='feedTitles'>Possible Match</h2>
+    <md-progress-linear ng-if='match' class="md-accent md-hue-2" md-diameter="40"></md-progress-linear>
+    <div ng-if="!noMatch">No Matches Yet!</div>
+    <div>
+      <md-card ng-repeat='item in possibleMatch'>
+        <md-card-title layout="row">
+          <md-card-title-text layout="column">
+            <span class="md-display-1"> Possible Match </span>
+            <span class="md-display-1"> {{ item.lostOrFound.toUpperCase() }} </span>
+            <span class="md-headline"> {{ item.category }} </span>
+            <span class="md-title"> {{ item.keyWords }} </span>
+            <span class="md-subhead"> {{ item.comments }} </span>
+          </md-card-title-text>
 
-        <div flex-xs flex-gt-xs="30" layout-align='end top' >
-          <md-card>
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-display-1"> {{item._user.username}} </span>
-                <span class="md-headline"> {{item._user.name}} </span>
-              </md-card-title-text>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-              <md-button class="mapButton md-accent md-hue-2" ng-click='openForm()' >contact this person</md-button>
-            </md-card-actions>
-          </md-card>
-        </div>
-
-      </md-card-title>
-      <md-card-actions layout="row" >
-        <md-button class="md-accent md-raised" ng-click='resolve()' >Resolve</md-button>
-      </md-card-actions>
-    </md-card>
+          <div flex-xs flex-gt-xs="30" layout-align='end top' >
+            <md-card>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-display-1"> {{item._user.username}} </span>
+                  <span class="md-headline"> {{item._user.name}} </span>
+                </md-card-title-text>
+              </md-card-title>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button class="mapButton md-accent md-hue-2" ng-click='openForm(item._user)' >
+                  Contact This Person
+                </md-button>
+              </md-card-actions>
+            </md-card>
+          </div>
+        </md-card-title>
+      </md-card>
     </div>
-      <br>
     <br>
-</div>
-
-<div layout="row">
-  <div flex-xs flex-gt-xs="50" layout="column">
-  <h2 class='feedTitles'>Lost Items</h2>
-    <md-card ng-repeat='item in lost | reverse'>
-      <md-card-title>
-        <md-card-title-text>
-          <span class="md-display-1"> {{ item.lostOrFound.toUpperCase() }} </span>
-          <span class="md-headline"> {{ item.category }} </span>
-          <span class="md-title"> {{ item.keyWords }} </span>
-          <span class="md-subhead"> {{ item.comments }} </span>
-        </md-card-title-text>
-        <md-card-title-media>
-          <div class="md-media-lg card-media"></div>
-        </md-card-title-media>
-      </md-card-title>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="feedButton md-accent md-raised" ng-click='resolve(item)' >Resolve</md-button>
-      </md-card-actions>
-    </md-card>
+    <br>
   </div>
-    
-  <div flex-xs flex-gt-xs="50" layout="column">
-  <h2 class='feedTitles'>Found Items</h2>
-    <md-card ng-repeat='item in found | reverse'>
-      <md-card-title>
+
+  <div layout="row">
+    <div flex-xs flex-gt-xs="50" layout="column">
+      <h2 class='feedTitles'>Lost Items</h2>
+      <md-card ng-repeat='item in lost | reverse'>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-display-1"> {{ item.lostOrFound.toUpperCase() }} </span>
+            <span class="md-headline"> {{ item.category }} </span>
+            <span class="md-title"> {{ item.keyWords }} </span>
+            <span class="md-subhead"> {{ item.comments }} </span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="feedButton md-accent md-raised" ng-click='resolve(item)' >
+            Resolve
+          </md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+
+    <div flex-xs flex-gt-xs="50" layout="column">
+      <h2 class='feedTitles'>Found Items</h2>
+      <md-card ng-repeat='item in found | reverse'>
+        <md-card-title>
         <md-card-title-text>
           <span class="md-display-1"> {{ item.lostOrFound.toUpperCase() }} </span>
           <span class="md-headline"> {{ item.category }} </span>
@@ -71,13 +72,13 @@
         <md-card-title-media>
           <div class="md-media-lg card-media"></div>
         </md-card-title-media>
-      </md-card-title>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="feedButton md-accent md-raised" ng-click='resolve(item)' >Resolve</md-button>
-      </md-card-actions>
-    </md-card>
- </div>
-  
-</div>
-
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="feedButton md-accent md-raised" ng-click='resolve(item)' >
+            Resolve
+          </md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>
 </md-content>

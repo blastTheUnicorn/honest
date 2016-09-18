@@ -1,4 +1,6 @@
-angular.module('LoginController', []).controller('LoginCtrl', function($scope, $location, $http, Token, $mdMedia, $mdToast){
+angular.module('LoginController', [])
+
+.controller('LoginCtrl', function($scope, $location, $http, Token, $mdMedia, $mdToast){
   
   $scope.user = {};
 
@@ -9,14 +11,6 @@ angular.module('LoginController', []).controller('LoginCtrl', function($scope, $
   $scope.customQuery = $mdMedia('(min-width: 1234px)');
   $scope.anotherCustom = $mdMedia('max-width: 300px');
   
-  // console.log($scope.$mdMedia)
-
-  $scope.goHome = function(){
-    if($scope.user.username === 'atlante' && $scope.user.password === 'july292006'){
-      console.log('change location: ')
-      $location.path('/home')
-    }    
-  }
 
   $scope.login = function(){
     return $http({
@@ -37,10 +31,7 @@ angular.module('LoginController', []).controller('LoginCtrl', function($scope, $
         .hideDelay(3000) 
         .position('right')
       )
-
-
-    } )
-  }
-
+    })
+  };
 
 });
